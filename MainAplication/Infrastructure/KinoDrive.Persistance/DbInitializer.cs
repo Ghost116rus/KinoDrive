@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace KinoDrive.Persistance
 {
-    public class DbIntializer
+    public static class DbInitializer
     {
-        public static void Intialize(KinoDriveDbContext context)
+        public static void Initialize(KinoDriveDbContext context)
         {
             context.Database.EnsureCreated();
         }

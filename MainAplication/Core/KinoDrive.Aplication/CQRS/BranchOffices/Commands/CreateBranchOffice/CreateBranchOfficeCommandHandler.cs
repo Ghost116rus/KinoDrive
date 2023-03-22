@@ -1,16 +1,12 @@
 ﻿using KinoDrive.Aplication.Interfaces;
 using KinoDrive.Domain;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace KinoDrive.Aplication.BranhcOffices.Commands.CreateBranchOffice
+
+namespace KinoDrive.Aplication.CQRS.BranchOffices.Commands.CreateBranchOffice
 {
     public class CreateBranchOfficeCommandHandlier
-                : IRequestHandler<CreateBranchOfficeCommand, Guid>
+                : IRequestHandler<CreateBranchOfficeCommand, int>
     {
         private readonly IKinoDriveDbContext _context;
 
@@ -19,12 +15,11 @@ namespace KinoDrive.Aplication.BranhcOffices.Commands.CreateBranchOffice
             _context = context;
         }
 
-        public async Task<Guid> Handle(CreateBranchOfficeCommand request,
+        public async Task<int> Handle(CreateBranchOfficeCommand request,
             CancellationToken cancellationToken)
         {
             var branch = new BranchOffice()
             {
-                Id = Guid.NewGuid(),
                 City = request.City,
                 Adress = request.Adress,
                 Description = request.Description
