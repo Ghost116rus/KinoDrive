@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MediaServer", "MediaServer", "{0F49252D-037A-4EE0-80EC-45040698172B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LogIn", "LogIn", "{2807BA9E-9737-4EE3-ACED-4316B52B84EA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MainAplication", "MainAplication", "{A8B0C61D-63E3-4712-9B73-83AA26129845}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{2D5FC13B-AAE0-4172-B45F-409B3BD8124A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{D42D8BF3-1AF0-4A55-9C5B-F743893212FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{F93C5578-6E4A-46EE-9342-6CA2BE2F5440}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinoDriveWebAPI", "MainAplication\Presentation\KinoDriveWebAPI\KinoDriveWebAPI.csproj", "{44F6F1DE-3BB7-43DA-AFB7-5CF486F18125}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinoDrive.Persistance", "MainAplication\Infrastructure\KinoDrive.Persistance\KinoDrive.Persistance.csproj", "{1B03FBD8-34FA-49AA-BE97-8DE89A2667B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinoDrive.Aplication", "MainAplication\Core\KinoDrive.Aplication\KinoDrive.Aplication.csproj", "{55E3806E-F4F3-4267-AE63-1EC4139C3F91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinoDrive.Domain", "MainAplication\Core\KinoDrive.Domain\KinoDrive.Domain.csproj", "{06A63840-9D4E-4D9E-A1E5-840B2BFB37AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{44F6F1DE-3BB7-43DA-AFB7-5CF486F18125}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44F6F1DE-3BB7-43DA-AFB7-5CF486F18125}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44F6F1DE-3BB7-43DA-AFB7-5CF486F18125}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44F6F1DE-3BB7-43DA-AFB7-5CF486F18125}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B03FBD8-34FA-49AA-BE97-8DE89A2667B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B03FBD8-34FA-49AA-BE97-8DE89A2667B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B03FBD8-34FA-49AA-BE97-8DE89A2667B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B03FBD8-34FA-49AA-BE97-8DE89A2667B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55E3806E-F4F3-4267-AE63-1EC4139C3F91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55E3806E-F4F3-4267-AE63-1EC4139C3F91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55E3806E-F4F3-4267-AE63-1EC4139C3F91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55E3806E-F4F3-4267-AE63-1EC4139C3F91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06A63840-9D4E-4D9E-A1E5-840B2BFB37AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06A63840-9D4E-4D9E-A1E5-840B2BFB37AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06A63840-9D4E-4D9E-A1E5-840B2BFB37AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06A63840-9D4E-4D9E-A1E5-840B2BFB37AB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2D5FC13B-AAE0-4172-B45F-409B3BD8124A} = {A8B0C61D-63E3-4712-9B73-83AA26129845}
+		{D42D8BF3-1AF0-4A55-9C5B-F743893212FA} = {A8B0C61D-63E3-4712-9B73-83AA26129845}
+		{F93C5578-6E4A-46EE-9342-6CA2BE2F5440} = {A8B0C61D-63E3-4712-9B73-83AA26129845}
+		{44F6F1DE-3BB7-43DA-AFB7-5CF486F18125} = {F93C5578-6E4A-46EE-9342-6CA2BE2F5440}
+		{1B03FBD8-34FA-49AA-BE97-8DE89A2667B6} = {D42D8BF3-1AF0-4A55-9C5B-F743893212FA}
+		{55E3806E-F4F3-4267-AE63-1EC4139C3F91} = {2D5FC13B-AAE0-4172-B45F-409B3BD8124A}
+		{06A63840-9D4E-4D9E-A1E5-840B2BFB37AB} = {2D5FC13B-AAE0-4172-B45F-409B3BD8124A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AF85D388-D17D-420D-B702-B1EC79DB6925}
+	EndGlobalSection
+EndGlobal
