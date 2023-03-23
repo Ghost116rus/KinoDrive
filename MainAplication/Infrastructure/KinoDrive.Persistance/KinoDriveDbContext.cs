@@ -19,6 +19,10 @@ namespace KinoDrive.Persistance
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Complaint> Complaints { get; set; }
 
+        public DbSet<Genre> Genres { get; set; }
+        public DbSet<FilmDirector> FilmDirectors { get; set; }
+        public DbSet<Actor> Actors { get; set; }
+
 
         public KinoDriveDbContext(DbContextOptions<KinoDriveDbContext> options)
             :base(options) { }
