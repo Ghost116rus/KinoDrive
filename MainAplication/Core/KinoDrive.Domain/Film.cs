@@ -8,6 +8,10 @@ namespace KinoDrive.Domain
         public int ReleaseYear { get; set; }
         public int Length { get; set; }
 
+        public float Rating { get; set; }
+        public float RatingOnKinopoisk { get; set; }
+        public int RatingOnImdb { get; set; }
+
         public IEnumerable<Review> Reviews { get; set; } = new List<Review>();
         public IEnumerable<Seance> Seances { get; set; } = new List<Seance>();
 
