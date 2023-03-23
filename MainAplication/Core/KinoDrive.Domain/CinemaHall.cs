@@ -11,5 +11,6 @@ namespace KinoDrive.Domain
 
         public int OfficeId { get; set; }
         public BranchOffice Office { get; set; }
+        public IEnumerable<Seance> Seances { get; set; } = new List<Seance>();
     }
 }

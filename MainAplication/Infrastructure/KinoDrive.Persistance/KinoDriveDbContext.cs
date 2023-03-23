@@ -12,6 +12,7 @@ namespace KinoDrive.Persistance
         public DbSet<CinemaHall> CinemaHalls{ get; set; }
 
         public DbSet<Film> Films { get; set; }
+        public DbSet<Seance> Seances { get; set; }
 
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Complaint> Complaints { get; set; }
@@ -34,6 +35,7 @@ namespace KinoDrive.Persistance
 
             builder.ApplyConfiguration(new ComplaintsConfiguration());
             builder.ApplyConfiguration(new ReviewConfiguration());
+            builder.ApplyConfiguration(new SeanceConfiguration());
 
             base.OnModelCreating(builder);
         }

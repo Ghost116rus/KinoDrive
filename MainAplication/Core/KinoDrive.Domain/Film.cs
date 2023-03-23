@@ -14,5 +14,6 @@ namespace KinoDrive.Domain
         public int Length { get; set; }
 
         public IEnumerable<Review> Reviews { get; set; } = new List<Review>();
+        public IEnumerable<Seance> Seances { get; set; } = new List<Seance>();
     }
 }
