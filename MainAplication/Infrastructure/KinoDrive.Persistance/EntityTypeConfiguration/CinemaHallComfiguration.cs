@@ -14,6 +14,9 @@ namespace KinoDrive.Persistance.EntityTypeConfiguration
                 .HasOne(office => office.Office)
                 .WithMany(cinema => cinema.CinemaHalls)
                 .HasForeignKey(f => f.OfficeId);
+
+            builder.HasKey(cinemaHall => cinemaHall.Id);
+            builder.HasIndex(cinemaHall => cinemaHall.Id).IsUnique();
         }
     }
 }

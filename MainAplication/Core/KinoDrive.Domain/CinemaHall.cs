@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace KinoDrive.Domain
 {
@@ -15,5 +11,6 @@ namespace KinoDrive.Domain
 
         public int OfficeId { get; set; }
         public BranchOffice Office { get; set; }
+        public IEnumerable<Seance> Seances { get; set; } = new List<Seance>();
     }
 }

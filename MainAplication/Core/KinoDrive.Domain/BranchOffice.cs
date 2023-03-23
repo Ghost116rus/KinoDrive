@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace KinoDrive.Domain
 {
@@ -14,6 +10,7 @@ namespace KinoDrive.Domain
         public string Description { get; set; }
 
         public IEnumerable<CinemaHall> CinemaHalls { get; set; } = new List<CinemaHall>();
+        public IEnumerable<Complaint> Complaintes { get; set; } = new List<Complaint>();
     }
     
 }
