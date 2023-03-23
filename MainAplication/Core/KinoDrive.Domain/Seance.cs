@@ -18,5 +18,6 @@ namespace KinoDrive.Domain
 
         public Film Film { get; set; }
         public CinemaHall CinemaHall { get; set; }
+        public IEnumerable<Booking> Bookings { get; set; } = new List<Booking>();
     }
 }
