@@ -12,5 +12,7 @@ namespace KinoDrive.Domain
         public string Description { get; set; }
         public int ReleaseYear { get; set; }
         public int Length { get; set; }
+
+        public IEnumerable<Review> Reviews { get; set; } = new List<Review>();
     }
 }

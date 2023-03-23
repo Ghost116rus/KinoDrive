@@ -13,6 +13,7 @@ namespace KinoDrive.Persistance
 
         public DbSet<Film> Films { get; set; }
 
+        public DbSet<Review> Reviews { get; set; }
         public DbSet<Complaint> Complaints { get; set; }
         public DbSet<User> Users { get; set; }
 
@@ -22,9 +23,18 @@ namespace KinoDrive.Persistance
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new BranchOfficeConfiguration());
-            builder.ApplyConfiguration(new CinemaHallComfiguration());
-            builder.ApplyConfiguration(new ComplaintsConfiguration());
             builder.ApplyConfiguration(new FilmConfiguration());
+
+
+
+            builder.ApplyConfiguration(new CinemaHallComfiguration());
+
+
+
+
+            builder.ApplyConfiguration(new ComplaintsConfiguration());
+            builder.ApplyConfiguration(new ReviewConfiguration());
+
             base.OnModelCreating(builder);
         }
     }
