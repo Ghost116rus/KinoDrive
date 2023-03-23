@@ -9,6 +9,7 @@ namespace KinoDrive.Persistance
     public class KinoDriveDbContext : DbContext, IKinoDriveDbContext
     {
         public DbSet<BranchOffice> BranchOffices { get; set; }
+        public DbSet<CinemaHall> CinemaHalls{ get; set; }
 
         public KinoDriveDbContext(DbContextOptions<KinoDriveDbContext> options)
             :base(options) { }
