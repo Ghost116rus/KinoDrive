@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail;
 using KinoDrive.Aplication.CQRS.Films.Queries.GetFilmList;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -24,6 +25,15 @@ namespace KinoDriveWebAPI.Controllers
             var query = new GetActiveFilmListQuery();
 
             var vm = await Mediator.Send(query);
+            return Ok(vm);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<FilmDetailVM>> GetFilmById(int id)
+        {
+            var query = new GetFilmDetailQuery() { Id = id };
+            var vm = await Mediator.Send(query);
+
             return Ok(vm);
         }
 

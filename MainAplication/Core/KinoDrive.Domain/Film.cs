@@ -15,11 +15,11 @@ namespace KinoDrive.Domain
         public float RatingOnKinopoisk { get; set; }
         public int RatingOnImdb { get; set; }
 
-        public IEnumerable<Review> Reviews { get; set; } = new List<Review>();
-        public IEnumerable<Seance> Seances { get; set; } = new List<Seance>();
+        public IEnumerable<Review>? Reviews { get; set; }
+        public IEnumerable<Seance>? Seances { get; set; }
 
-        public IEnumerable<Genre> Genres { get; set; } = new List<Genre>();
-        public IEnumerable<FilmDirector> FilmDirectors { get; set; } = new List<FilmDirector>();
-        public IEnumerable<Actor> Films { get; set; } = new List<Actor>();
+        public IEnumerable<Genre>? Genres { get; set; } 
+        public IEnumerable<FilmDirector>? FilmDirectors { get; set; }
+        public IEnumerable<Actor>? Actors { get; set; }
     }
 }

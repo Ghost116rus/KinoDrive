@@ -11,6 +11,6 @@ namespace KinoDrive.Domain
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public IEnumerable<Film> Films { get; set; } = new List<Film>();
+        public IEnumerable<Film> Films { get; set; }
     }
 }

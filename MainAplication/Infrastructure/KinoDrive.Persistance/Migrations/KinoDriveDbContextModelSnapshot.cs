@@ -24,15 +24,15 @@ namespace KinoDrive.Persistance.Migrations
 
             modelBuilder.Entity("ActorFilm", b =>
                 {
+                    b.Property<int>("ActorsId")
+                        .HasColumnType("int");
+
                     b.Property<int>("FilmsId")
                         .HasColumnType("int");
 
-                    b.Property<int>("FilmsId1")
-                        .HasColumnType("int");
+                    b.HasKey("ActorsId", "FilmsId");
 
-                    b.HasKey("FilmsId", "FilmsId1");
-
-                    b.HasIndex("FilmsId1");
+                    b.HasIndex("FilmsId");
 
                     b.ToTable("ActorFilm");
                 });
@@ -357,13 +357,13 @@ namespace KinoDrive.Persistance.Migrations
                 {
                     b.HasOne("KinoDrive.Domain.Actor", null)
                         .WithMany()
-                        .HasForeignKey("FilmsId")
+                        .HasForeignKey("ActorsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("KinoDrive.Domain.Film", null)
                         .WithMany()
-                        .HasForeignKey("FilmsId1")
+                        .HasForeignKey("FilmsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
