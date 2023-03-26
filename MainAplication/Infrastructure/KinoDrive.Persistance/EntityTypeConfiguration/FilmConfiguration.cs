@@ -16,6 +16,7 @@ namespace KinoDrive.Persistance.EntityTypeConfiguration
             builder.HasKey(x => x.Id);
             builder.HasIndex(x => x.Id);
 
+            builder.Property(film => film.Name).HasMaxLength(500);
             builder.Property(film => film.Description).HasMaxLength(2000);
             builder.HasCheckConstraint("ReleaseYear", "ReleaseYear LIKE '[1,2][0,8,9][0-9][0-9]'");
         }
