@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KinoDrive.Persistance.Migrations
 {
     [DbContext(typeof(KinoDriveDbContext))]
-    [Migration("20230326225736_InitMigration")]
+    [Migration("20230327223816_InitMigration")]
     partial class InitMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -140,6 +140,11 @@ namespace KinoDrive.Persistance.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(155)
+                        .HasColumnType("nvarchar(155)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("Id")
@@ -155,6 +160,9 @@ namespace KinoDrive.Persistance.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("Name")
+                        .HasColumnType("int");
 
                     b.Property<int>("NumOfPlacesInRow")
                         .HasColumnType("int");
@@ -173,7 +181,8 @@ namespace KinoDrive.Persistance.Migrations
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.HasIndex("OfficeId");
+                    b.HasIndex("OfficeId", "Name")
+                        .IsUnique();
 
                     b.ToTable("CinemaHalls");
                 });
@@ -331,6 +340,9 @@ namespace KinoDrive.Persistance.Migrations
                     b.Property<DateTime>("SeanceStartTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CinemaHallId");
@@ -349,6 +361,10 @@ namespace KinoDrive.Persistance.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("NickName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

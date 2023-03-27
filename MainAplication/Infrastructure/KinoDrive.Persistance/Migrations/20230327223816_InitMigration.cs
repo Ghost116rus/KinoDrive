@@ -29,6 +29,7 @@ namespace KinoDrive.Persistance.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     City = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(155)", maxLength: 155, nullable: false),
                     Adress = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false)
                 },
@@ -90,7 +91,8 @@ namespace KinoDrive.Persistance.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NickName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -103,6 +105,7 @@ namespace KinoDrive.Persistance.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<int>(type: "int", nullable: false),
                     Type = table.Column<int>(type: "int", nullable: false),
                     NumOfRow = table.Column<int>(type: "int", nullable: false),
                     NumOfPlacesInRow = table.Column<int>(type: "int", nullable: false),
@@ -250,9 +253,10 @@ namespace KinoDrive.Persistance.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FilmId = table.Column<int>(type: "int", nullable: false),
-                    CinemaHallId = table.Column<int>(type: "int", nullable: false),
+                    Type = table.Column<int>(type: "int", nullable: false),
                     SeanceStartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    BasicCost = table.Column<int>(type: "int", nullable: false)
+                    BasicCost = table.Column<int>(type: "int", nullable: false),
+                    CinemaHallId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -332,9 +336,10 @@ namespace KinoDrive.Persistance.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_CinemaHalls_OfficeId",
+                name: "IX_CinemaHalls_OfficeId_Name",
                 table: "CinemaHalls",
-                column: "OfficeId");
+                columns: new[] { "OfficeId", "Name" },
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Complaints_BranchOfficeId",
