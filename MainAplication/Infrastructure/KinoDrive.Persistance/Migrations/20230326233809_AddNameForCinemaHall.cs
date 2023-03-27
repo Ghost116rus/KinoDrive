@@ -4,24 +4,23 @@
 
 namespace KinoDrive.Persistance.Migrations
 {
-    public partial class FilmName : Migration
+    public partial class AddNameForCinemaHall : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
+            migrationBuilder.AddColumn<int>(
                 name: "Name",
-                table: "Films",
-                type: "nvarchar(500)",
-                maxLength: 500,
+                table: "CinemaHalls",
+                type: "int",
                 nullable: false,
-                defaultValue: "");
+                defaultValue: 0);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
                 name: "Name",
-                table: "Films");
+                table: "CinemaHalls");
         }
     }
 }

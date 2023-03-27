@@ -5,6 +5,7 @@ namespace KinoDrive.Domain
     public class CinemaHall
     {
         public int Id { get; set; }
+        public int Name { get; set; }
         public int Type { get; set; }
         public int NumOfRow { get; set; }
         public int NumOfPlacesInRow { get; set; }

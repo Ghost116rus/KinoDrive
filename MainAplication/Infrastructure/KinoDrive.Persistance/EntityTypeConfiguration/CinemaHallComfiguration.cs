@@ -17,6 +17,8 @@ namespace KinoDrive.Persistance.EntityTypeConfiguration
 
             builder.HasKey(cinemaHall => cinemaHall.Id);
             builder.HasIndex(cinemaHall => cinemaHall.Id).IsUnique();
+
+            builder.HasIndex(k => new { k.OfficeId, k.Name}).IsUnique();
         }
     }
 }

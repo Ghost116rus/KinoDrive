@@ -12,6 +12,7 @@ namespace KinoDrive.Persistance.EntityTypeConfiguration
             builder.HasKey(branch => branch.Id);
             builder.HasIndex(branch => branch.Id).IsUnique();
             builder.Property(branch => branch.City).HasMaxLength(50);
+            builder.Property(branch => branch.Name).HasMaxLength(155);
             builder.Property(branch => branch.Adress).HasMaxLength(255);
             builder.Property(branch => branch.Description).HasMaxLength(1000);
         }

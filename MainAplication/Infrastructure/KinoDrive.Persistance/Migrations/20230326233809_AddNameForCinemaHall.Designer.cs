@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KinoDrive.Persistance.Migrations
 {
     [DbContext(typeof(KinoDriveDbContext))]
-    [Migration("20230323212801_AddRaitings")]
-    partial class AddRaitings
+    [Migration("20230326233809_AddNameForCinemaHall")]
+    partial class AddNameForCinemaHall
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,15 +26,15 @@ namespace KinoDrive.Persistance.Migrations
 
             modelBuilder.Entity("ActorFilm", b =>
                 {
+                    b.Property<int>("ActorsId")
+                        .HasColumnType("int");
+
                     b.Property<int>("FilmsId")
                         .HasColumnType("int");
 
-                    b.Property<int>("FilmsId1")
-                        .HasColumnType("int");
+                    b.HasKey("ActorsId", "FilmsId");
 
-                    b.HasKey("FilmsId", "FilmsId1");
-
-                    b.HasIndex("FilmsId1");
+                    b.HasIndex("FilmsId");
 
                     b.ToTable("ActorFilm");
                 });
@@ -156,6 +156,9 @@ namespace KinoDrive.Persistance.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("Name")
+                        .HasColumnType("int");
+
                     b.Property<int>("NumOfPlacesInRow")
                         .HasColumnType("int");
 
@@ -224,6 +227,11 @@ namespace KinoDrive.Persistance.Migrations
                     b.Property<int>("Length")
                         .HasColumnType("int");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
                     b.Property<float>("Rating")
                         .HasColumnType("real");
 
@@ -235,6 +243,9 @@ namespace KinoDrive.Persistance.Migrations
 
                     b.Property<int>("ReleaseYear")
                         .HasColumnType("int");
+
+                    b.Property<bool>("isActive")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -351,13 +362,13 @@ namespace KinoDrive.Persistance.Migrations
                 {
                     b.HasOne("KinoDrive.Domain.Actor", null)
                         .WithMany()
-                        .HasForeignKey("FilmsId")
+                        .HasForeignKey("ActorsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("KinoDrive.Domain.Film", null)
                         .WithMany()
-                        .HasForeignKey("FilmsId1")
+                        .HasForeignKey("FilmsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

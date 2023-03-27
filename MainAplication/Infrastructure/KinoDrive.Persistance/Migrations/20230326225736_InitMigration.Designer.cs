@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KinoDrive.Persistance.Migrations
 {
     [DbContext(typeof(KinoDriveDbContext))]
-    [Migration("20230323204818_SecondMigration.cs")]
-    partial class SecondMigrationcs
+    [Migration("20230326225736_InitMigration")]
+    partial class InitMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,68 @@ namespace KinoDrive.Persistance.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("ActorFilm", b =>
+                {
+                    b.Property<int>("ActorsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FilmsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ActorsId", "FilmsId");
+
+                    b.HasIndex("FilmsId");
+
+                    b.ToTable("ActorFilm");
+                });
+
+            modelBuilder.Entity("FilmFilmDirector", b =>
+                {
+                    b.Property<int>("FilmDirectorsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FilmsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FilmDirectorsId", "FilmsId");
+
+                    b.HasIndex("FilmsId");
+
+                    b.ToTable("FilmFilmDirector");
+                });
+
+            modelBuilder.Entity("FilmGenre", b =>
+                {
+                    b.Property<int>("FilmsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GenresId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FilmsId", "GenresId");
+
+                    b.HasIndex("GenresId");
+
+                    b.ToTable("FilmGenre");
+                });
+
+            modelBuilder.Entity("KinoDrive.Domain.Actor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Actors");
+                });
 
             modelBuilder.Entity("KinoDrive.Domain.Booking", b =>
                 {
@@ -162,8 +224,25 @@ namespace KinoDrive.Persistance.Migrations
                     b.Property<int>("Length")
                         .HasColumnType("int");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<float>("Rating")
+                        .HasColumnType("real");
+
+                    b.Property<int>("RatingOnImdb")
+                        .HasColumnType("int");
+
+                    b.Property<float>("RatingOnKinopoisk")
+                        .HasColumnType("real");
+
                     b.Property<int>("ReleaseYear")
                         .HasColumnType("int");
+
+                    b.Property<bool>("isActive")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -172,6 +251,44 @@ namespace KinoDrive.Persistance.Migrations
                     b.ToTable("Films");
 
                     b.HasCheckConstraint("ReleaseYear", "ReleaseYear LIKE '[1,2][0,8,9][0-9][0-9]'");
+                });
+
+            modelBuilder.Entity("KinoDrive.Domain.FilmDirector", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("BornCountry")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FilmDirectors");
+                });
+
+            modelBuilder.Entity("KinoDrive.Domain.Genre", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Genres");
                 });
 
             modelBuilder.Entity("KinoDrive.Domain.Review", b =>
@@ -236,6 +353,51 @@ namespace KinoDrive.Persistance.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("ActorFilm", b =>
+                {
+                    b.HasOne("KinoDrive.Domain.Actor", null)
+                        .WithMany()
+                        .HasForeignKey("ActorsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KinoDrive.Domain.Film", null)
+                        .WithMany()
+                        .HasForeignKey("FilmsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FilmFilmDirector", b =>
+                {
+                    b.HasOne("KinoDrive.Domain.FilmDirector", null)
+                        .WithMany()
+                        .HasForeignKey("FilmDirectorsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KinoDrive.Domain.Film", null)
+                        .WithMany()
+                        .HasForeignKey("FilmsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FilmGenre", b =>
+                {
+                    b.HasOne("KinoDrive.Domain.Film", null)
+                        .WithMany()
+                        .HasForeignKey("FilmsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KinoDrive.Domain.Genre", null)
+                        .WithMany()
+                        .HasForeignKey("GenresId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("KinoDrive.Domain.Booking", b =>
