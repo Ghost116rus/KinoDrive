@@ -25,7 +25,7 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
         public IList<StaffFilmVM>? Actors { get; set; }
         public IList<GenreVm>? Genres{ get; set; }
 
-        public IList<SeancesForFilmVm> Seances { get; set; }
+        public Dictionary<string, Dictionary<string, IList<SeancesForFilmVm>>>? SessionSchedule { get; set; }
 
         public void Mapping (Profile profile)
         {
