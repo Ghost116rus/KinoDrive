@@ -49,6 +49,8 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
             var filmDetail = await _context.Films
                 .ProjectTo<FilmDetailVM>(_mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync(film => film.Id == request.Id);
+            
+            if (filmDetail == null) return null;
 
             var seances = await _context.Seances
                 .Where(s => s.FilmId == request.Id)
