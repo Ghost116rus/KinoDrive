@@ -27,9 +27,22 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
             CancellationToken cancellationToken)
         {
             var filmDetail = await _context.Films
-                .Where(film => film.Id == request.Id)
+                .Include(d => d.FilmDirectors)
+                .Include(a => a.Actors)
+                .Include(g => g.Genres)
                 .ProjectTo<FilmDetailVM>(_mapper.ConfigurationProvider)
-                .FirstOrDefaultAsync(cancellationToken);
+                .FirstOrDefaultAsync(film => film.Id == request.Id);
+
+            var seances = await _context.Seances
+                .Where(s => s.FilmId == request.Id)
+                 .Include(s => s.CinemaHall)
+                    .ThenInclude(ch => ch.Office)
+                    .Where(bh => bh.CinemaHall.Office.City == request.City && bh.SeanceStartTime.Date >= DateTime.Now.Date)
+                    .OrderBy(s => s.SeanceStartTime)
+                    .ProjectTo<SeancesForFilmVm>(_mapper.ConfigurationProvider)
+                    .ToListAsync();
+
+            filmDetail.Seances = seances;
 
 
             return filmDetail;                

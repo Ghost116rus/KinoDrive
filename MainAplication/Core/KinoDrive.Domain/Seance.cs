@@ -10,11 +10,14 @@ namespace KinoDrive.Domain
     {
         public int Id { get; set; }
         public int FilmId { get; set; }
-        public int CinemaHallId { get; set; }
+
+        public int Type { get; set; }
 
         public DateTime SeanceStartTime { get; set; }
 
         public int BasicCost { get; set; }
+
+        public int CinemaHallId { get; set; }
 
         public Film Film { get; set; }
         public CinemaHall CinemaHall { get; set; }

@@ -28,10 +28,10 @@ namespace KinoDriveWebAPI.Controllers
             return Ok(vm);
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<FilmDetailVM>> GetFilmById(int id)
+        [HttpGet]
+        public async Task<ActionResult<FilmDetailVM>> GetFilmByIdAndCity(int id, string city)
         {
-            var query = new GetFilmDetailQuery() { Id = id };
+            var query = new GetFilmDetailQuery() { Id = id, City = city };
             var vm = await Mediator.Send(query);
 
             return Ok(vm);

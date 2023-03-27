@@ -10,5 +10,6 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
     public class GetFilmDetailQuery : IRequest<FilmDetailVM>
     {
         public int Id { get; set; }
+        public string? City { get; set; }
     }
 }
