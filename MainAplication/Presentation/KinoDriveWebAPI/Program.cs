@@ -21,6 +21,17 @@ services.AddAplication();
 services.AddPersistance(builder.Configuration);
 
 services.AddControllers();
+
+services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyHeader();
+        policy.AllowAnyMethod();
+        policy.AllowAnyOrigin();
+    });
+});
+
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 
