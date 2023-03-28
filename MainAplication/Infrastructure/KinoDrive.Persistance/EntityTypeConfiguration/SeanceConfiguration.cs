@@ -21,6 +21,8 @@ namespace KinoDrive.Persistance.EntityTypeConfiguration
                 .HasOne(h => h.CinemaHall)
                 .WithMany(s => s.Seances)
                 .HasForeignKey(f => f.CinemaHallId);
+
+            builder.Property(x => x.Type).HasColumnType("varchar(4)");
         }
     }
 }

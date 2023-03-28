@@ -11,7 +11,7 @@ namespace KinoDrive.Domain
         public int Id { get; set; }
         public int FilmId { get; set; }
 
-        public int Type { get; set; }
+        public string Type { get; set; }
 
         public DateTime SeanceStartTime { get; set; }
 

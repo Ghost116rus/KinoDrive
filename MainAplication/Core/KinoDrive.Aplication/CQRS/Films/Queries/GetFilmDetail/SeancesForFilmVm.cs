@@ -9,6 +9,7 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
         public int Id { get; set; }
         public string CinemaHallName { get; set; }
         public string Type { get; set; }
+        public int BasicCost { get; set; }
         public TimeSpan SeanceStartTime { get; set; }
 
         public void Mapping(Profile profile)
