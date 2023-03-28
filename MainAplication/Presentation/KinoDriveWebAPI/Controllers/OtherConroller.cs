@@ -1,4 +1,6 @@
-﻿using KinoDrive.Aplication.CQRS.Other.Queries;
+﻿using KinoDrive.Aplication.CQRS.Other.Commands.Seances;
+using KinoDrive.Aplication.CQRS.Other.Queries;
+using KinoDrive.Aplication.CQRS.Other.Queries.Cities;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,15 @@ namespace KinoDriveWebAPI.Controllers
 
             var vm = await Mediator.Send(query);
             return Ok(vm);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateDatesForSeances()
+        {
+            var command = new ChangeDateForSeancesCommand();
+
+            await Mediator.Send(command);
+            return NoContent();
         }
     }
 }
