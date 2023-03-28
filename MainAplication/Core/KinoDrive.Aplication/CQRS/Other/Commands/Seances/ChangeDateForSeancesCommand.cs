@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KinoDrive.Aplication.CQRS.Other.Queries
+namespace KinoDrive.Aplication.CQRS.Other.Commands.Seances
 {
-    public class GetCitiesQuery : IRequest<CityListVm>
+    public class ChangeDateForSeancesCommand : IRequest
     {
 
     }
