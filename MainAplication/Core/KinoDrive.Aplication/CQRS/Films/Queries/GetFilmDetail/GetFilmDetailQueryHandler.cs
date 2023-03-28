@@ -13,23 +13,7 @@ using System.Threading.Tasks;
 
 namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
 {
-    public class SeancesForFilmList : IMapWith<Seance>
-    {
-        public int Id { get; set; }
-        public string BranchOfficeName { get; set; }
-        public string CinemaHallName { get; set; }
-        public string Type { get; set; }
-        public DateTime SeanceStartTime { get; set; }
 
-        public void Mapping(Profile profile)
-        {
-            profile.CreateMap<Seance, SeancesForFilmList>()
-                .ForMember(s => s.BranchOfficeName,
-                opt => opt.MapFrom(s => s.CinemaHall.Office.Adress))
-                .ForMember(s => s.CinemaHallName,
-                opt => opt.MapFrom(s => s.CinemaHall.Name));
-        }
-    }
 
     public class GetFilmDetailQueryHandler : 
         IRequestHandler<GetFilmDetailQuery, FilmDetailVM>
