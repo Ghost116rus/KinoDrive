@@ -47,7 +47,7 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
             CancellationToken cancellationToken)
         {
             var filmDetail = await _context.Films
-                .ProjectTo<FilmDetailVM>(_mapper.ConfigurationProvider)
+                .ProjectTo<FilmDetailInfo>(_mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync(film => film.Id == request.Id);
             
             if (filmDetail == null) return null;
@@ -82,9 +82,11 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
 
             }
 
-            filmDetail.SessionSchedule = sessionSchedule;
-
-            return filmDetail;                
+            return new FilmDetailVM()
+            {
+                Info = filmDetail,
+                SessionSchedule = sessionSchedule
+            };                
         }
     }
 }
