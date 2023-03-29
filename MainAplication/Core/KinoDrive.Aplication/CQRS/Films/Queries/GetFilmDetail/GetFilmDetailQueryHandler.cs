@@ -65,11 +65,29 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
                 sessionSchedule[date][office].Add(_mapper.Map<SeancesForFilmVm>(seance));
 
             }
+            var list = new List<DatesForFilmVM>();
+
+            foreach (var item in sessionSchedule)
+            {
+                var date = new DatesForFilmVM();
+                date.Date = item.Key;
+                foreach (var vm in item.Value)
+                {
+                    var branch = new BranchOfficesForFilmVM();
+                    branch.Name = vm.Key;
+                    foreach (var seance in vm.Value)
+                    {
+                        branch.Seances.Add(seance);
+                    }
+                    date.Theaters.Add(branch);
+                }
+                list.Add(date);
+            }
 
             return new FilmDetailVM()
             {
                 Info = filmDetail,
-                SessionSchedule = sessionSchedule
+                SessionSchedule = list
             };                
         }
     }
