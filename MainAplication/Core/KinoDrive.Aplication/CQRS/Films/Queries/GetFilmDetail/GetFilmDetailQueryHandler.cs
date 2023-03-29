@@ -45,26 +45,33 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
                     .ProjectTo<SeancesForFilmList>(_mapper.ConfigurationProvider)
                     .ToListAsync();
 
-            var sessionSchedule = new Dictionary<string, Dictionary<string, IList<SeancesForFilmVm>>>();
 
-            foreach(var seance in seances)
+
+            var sessionSchedule = new List<DatesForFilmVM>();
+            var sessions = new Dictionary<string, Dictionary<string, IList<SeancesForFilmVm>>>();
+
+            foreach (var seance in seances)
             {
                 var date = seance.SeanceStartTime.Date.ToString().Split()[0];
                 var office = seance.BranchOfficeName;
-                
-                if (!sessionSchedule.ContainsKey(date))
+
+                if (!sessions.ContainsKey(date))
                 {
-                    sessionSchedule.Add(date, new Dictionary<string, IList<SeancesForFilmVm>>());
+                    sessions.Add(date, new Dictionary<string, IList<SeancesForFilmVm>>());
+                    sessionSchedule.Add(new DatesForFilmVM { Date = date });
                 }
 
-                if (!sessionSchedule[date].ContainsKey(office))
+                if (!sessions[date].ContainsKey(office))
                 {
-                    sessionSchedule[date].Add(office, new List<SeancesForFilmVm>());
+                    sessions[date].Add(office, new List<SeancesForFilmVm>());
+                    sessionSchedule.Find(x => x.Date == date)
+                        .Theaters.Add(new BranchOfficesForFilmVM() { Name = office, Seances = sessions[date][office] });
                 }
 
-                sessionSchedule[date][office].Add(_mapper.Map<SeancesForFilmVm>(seance));
+                sessions[date][office].Add(_mapper.Map<SeancesForFilmVm>(seance));
 
             }
+
 
             return new FilmDetailVM()
             {
