@@ -19,7 +19,7 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
     public class BranchOfficesForFilmVM
     {
         public string Name { get; set; }
-        public IList<SeancesForFilmVm> Seances { get; set; } = new List<SeancesForFilmVm>();
+        public IList<SeancesForFilmVm> Seances { get; set; }
     }
 
     public class FilmDetailVM
