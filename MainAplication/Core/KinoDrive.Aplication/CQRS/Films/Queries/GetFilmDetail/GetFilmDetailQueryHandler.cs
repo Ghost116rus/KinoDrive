@@ -45,49 +45,38 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
                     .ProjectTo<SeancesForFilmList>(_mapper.ConfigurationProvider)
                     .ToListAsync();
 
-            var sessionSchedule = new Dictionary<string, Dictionary<string, IList<SeancesForFilmVm>>>();
 
-            foreach(var seance in seances)
+
+            var sessionSchedule = new List<DatesForFilmVM>();
+            var sessions = new Dictionary<string, Dictionary<string, IList<SeancesForFilmVm>>>();
+
+            foreach (var seance in seances)
             {
                 var date = seance.SeanceStartTime.Date.ToString().Split()[0];
                 var office = seance.BranchOfficeName;
-                
-                if (!sessionSchedule.ContainsKey(date))
+
+                if (!sessions.ContainsKey(date))
                 {
-                    sessionSchedule.Add(date, new Dictionary<string, IList<SeancesForFilmVm>>());
+                    sessions.Add(date, new Dictionary<string, IList<SeancesForFilmVm>>());
+                    sessionSchedule.Add(new DatesForFilmVM { Date = date });
                 }
 
-                if (!sessionSchedule[date].ContainsKey(office))
+                if (!sessions[date].ContainsKey(office))
                 {
-                    sessionSchedule[date].Add(office, new List<SeancesForFilmVm>());
+                    sessions[date].Add(office, new List<SeancesForFilmVm>());
+                    sessionSchedule.Find(x => x.Date == date)
+                        .Theaters.Add(new BranchOfficesForFilmVM() { Name = office, Seances = sessions[date][office] });
                 }
 
-                sessionSchedule[date][office].Add(_mapper.Map<SeancesForFilmVm>(seance));
+                sessions[date][office].Add(_mapper.Map<SeancesForFilmVm>(seance));
 
             }
-            var list = new List<DatesForFilmVM>();
 
-            foreach (var item in sessionSchedule)
-            {
-                var date = new DatesForFilmVM();
-                date.Date = item.Key;
-                foreach (var vm in item.Value)
-                {
-                    var branch = new BranchOfficesForFilmVM();
-                    branch.Name = vm.Key;
-                    foreach (var seance in vm.Value)
-                    {
-                        branch.Seances.Add(seance);
-                    }
-                    date.Theaters.Add(branch);
-                }
-                list.Add(date);
-            }
 
             return new FilmDetailVM()
             {
                 Info = filmDetail,
-                SessionSchedule = list
+                SessionSchedule = sessionSchedule
             };                
         }
     }

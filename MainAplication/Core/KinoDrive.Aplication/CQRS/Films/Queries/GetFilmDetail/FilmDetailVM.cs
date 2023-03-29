@@ -12,7 +12,7 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
     public class DatesForFilmVM
     {
         public string Date { get; set; }
-        public IList<BranchOfficesForFilmVM>? Theaters { get; set; } = new List<BranchOfficesForFilmVM>();
+        public IList<BranchOfficesForFilmVM> Theaters { get; set; } = new List<BranchOfficesForFilmVM>();
 
     }
 
@@ -26,7 +26,7 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
     {
         public FilmDetailInfo Info { get; set; }
 
-        public IList<DatesForFilmVM> SessionSchedule { get; set; }
+        public IList<DatesForFilmVM>? SessionSchedule { get; set; }
 
 
     }
