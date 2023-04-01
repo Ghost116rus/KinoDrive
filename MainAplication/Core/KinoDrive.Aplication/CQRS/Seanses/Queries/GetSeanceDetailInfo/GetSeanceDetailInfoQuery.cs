@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KinoDrive.Aplication.CQRS.Bookings.Queries
+namespace KinoDrive.Aplication.CQRS.Seanses.Queries.GetSeanceDetailInfo
 {
-    public class GetBookingQuery : IRequest<BookingPlacesListVM>
+    public class GetSeanceDetailInfoQuery : IRequest<SeanceDetailInfoVm>
     {
         public int SeanceId { get; set; }
     }
