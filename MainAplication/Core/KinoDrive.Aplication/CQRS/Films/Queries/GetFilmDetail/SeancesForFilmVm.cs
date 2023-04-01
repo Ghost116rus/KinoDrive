@@ -7,7 +7,6 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
     public class SeancesForFilmVm : IMapWith<SeancesForFilmList>
     {
         public int Id { get; set; }
-        public string CinemaHallName { get; set; }
         public string Type { get; set; }
         public int BasicCost { get; set; }
         public TimeSpan SeanceStartTime { get; set; }

@@ -41,7 +41,7 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
                  .Include(s => s.CinemaHall)
                     .ThenInclude(ch => ch.Office)
                     .Where(bh => bh.CinemaHall.Office.City == request.City && bh.SeanceStartTime >= DateTime.Now.AddHours(-2))
-                    .OrderBy(s => s.SeanceStartTime).ThenBy(s => s.CinemaHall.Office.Name).ThenBy(s => s.CinemaHall.Name)
+                    .OrderBy(s => s.SeanceStartTime).ThenBy(s => s.CinemaHall.Office.Name)
                     .ProjectTo<SeancesForFilmList>(_mapper.ConfigurationProvider)
                     .ToListAsync();
 
