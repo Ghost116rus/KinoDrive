@@ -4,17 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KinoDrive.Domain
+namespace KinoDrive.Aplication.CQRS.Bookings.Commands
 {
-    public class Booking
+    public class Ticket
     {
-        public int Id { get; set; }
-        public int SeanceId { get; set; }
         public int RowNumber { get; set; }
         public int PlaceNumber { get; set; }
         public int TicketCost { get; set; }
-        public int UserId { get; set; }
-        public User User { get; set; }
-        public Seance Seance { get; set; }
     }
 }
