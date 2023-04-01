@@ -1,15 +1,9 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using KinoDrive.Aplication.Common.Mappings;
 using KinoDrive.Aplication.Interfaces;
-using KinoDrive.Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
 {
@@ -36,12 +30,14 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
             
             if (filmDetail == null) return null;
 
+            if (filmDetail == null) return null;
+
             var seances = await _context.Seances
                 .Where(s => s.FilmId == request.Id)
                  .Include(s => s.CinemaHall)
                     .ThenInclude(ch => ch.Office)
                     .Where(bh => bh.CinemaHall.Office.City == request.City && bh.SeanceStartTime >= DateTime.Now.AddHours(-2))
-                    .OrderBy(s => s.SeanceStartTime).ThenBy(s => s.CinemaHall.Office.Name)
+                    .OrderBy(s => s.SeanceStartTime).ThenBy(s => s.CinemaHall.Office.Name).ThenBy(s => s.CinemaHall.Name)
                     .ProjectTo<SeancesForFilmList>(_mapper.ConfigurationProvider)
                     .ToListAsync();
 
