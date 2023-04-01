@@ -7,16 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KinoDrive.Aplication.CQRS.Bookings.Queries
+namespace KinoDrive.Aplication.CQRS.Seanses.Queries.GetSeanceDetailInfo
 {
-    public class GetBookingPlacesVM : IMapWith<Booking>
+    public class BookingPlaceVM : IMapWith<Booking>
     {
         public int RowNumber { get; set; }
         public int PlaceNumber { get; set; }
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Booking, GetBookingPlacesVM>();
+            profile.CreateMap<Booking, BookingPlaceVM>();
         }
     }
 }
