@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchDetails
 {
-    public class GetBranchOfficeDetailsQueryHadler
+    public class GetBranchOfficeDetailsQueryHandler
         : IRequestHandler<GetBranchOfficeDetailsQuery, BranchOfficeVm>
     {
         private readonly IKinoDriveDbContext _context;
         private readonly IMapper _mapper;
 
-        public GetBranchOfficeDetailsQueryHadler(IKinoDriveDbContext context, IMapper mapper)
+        public GetBranchOfficeDetailsQueryHandler(IKinoDriveDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

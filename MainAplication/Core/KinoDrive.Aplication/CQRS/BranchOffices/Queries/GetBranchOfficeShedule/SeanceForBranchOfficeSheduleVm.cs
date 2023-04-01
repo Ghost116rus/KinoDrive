@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using KinoDrive.Aplication.Common.Mappings;
-using KinoDrive.Domain;
 
-namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
+
+namespace KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficeShedule
 {
-    public class SeancesForFilmVm : IMapWith<SeancesForFilmList>
+    public class SeanceForBranchOfficeSheduleVm : IMapWith<SeanceForBranchOfficeSheduleList>
     {
         public int Id { get; set; }
         public string Type { get; set; }
@@ -13,7 +13,7 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<SeancesForFilmList, SeancesForFilmVm>()
+            profile.CreateMap<SeanceForBranchOfficeSheduleList, SeanceForBranchOfficeSheduleVm>()
                 .ForMember(s => s.SeanceStartTime,
                 opt => opt.MapFrom(s => s.SeanceStartTime.TimeOfDay));
         }
