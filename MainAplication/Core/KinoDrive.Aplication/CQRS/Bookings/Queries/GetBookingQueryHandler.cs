@@ -25,12 +25,22 @@ namespace KinoDrive.Aplication.CQRS.Bookings.Queries
         public async Task<BookingPlacesListVM> Handle(GetBookingQuery request,
             CancellationToken cancellationToken)
         {
-            var bookingPlaces = await _context.Bookings
+            var bookingPlacesListVM = await _context.Seances
+                .Where(x => x.Id == request.SeanceId)
+                .ProjectTo<BookingPlacesListVM>(_mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync();
+
+            if (bookingPlacesListVM == null)
+            {
+                return null;
+            }
+
+            bookingPlacesListVM.Places = await _context.Bookings
                 .Where(b => b.SeanceId == request.SeanceId)
                 .ProjectTo<GetBookingPlacesVM>(_mapper.ConfigurationProvider)
                 .ToListAsync();
 
-            return new BookingPlacesListVM { Places = bookingPlaces};
+            return bookingPlacesListVM;
         }
     }
 }
