@@ -13,7 +13,6 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
     {
         public int Id { get; set; }
         public string BranchOfficeName { get; set; }
-        public string CinemaHallName { get; set; }
         public string Type { get; set; }
         public int BasicCost { get; set; }
         public DateTime SeanceStartTime { get; set; }
@@ -22,9 +21,7 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
         {
             profile.CreateMap<Seance, SeancesForFilmList>()
                 .ForMember(s => s.BranchOfficeName,
-                opt => opt.MapFrom(s => s.CinemaHall.Office.Name))
-                .ForMember(s => s.CinemaHallName,
-                opt => opt.MapFrom(s => s.CinemaHall.Name));
+                opt => opt.MapFrom(s => s.CinemaHall.Office.Name));
         }
     }
 }

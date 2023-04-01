@@ -1,12 +1,7 @@
 ﻿using AutoMapper;
 using KinoDrive.Aplication.Common.Mappings;
-using KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail;
 using KinoDrive.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficeShedule
 {
@@ -19,7 +14,7 @@ namespace KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficeShedule
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Seance, SeancesForFilmList>();
+            profile.CreateMap<Seance, SeanceForBranchOfficeSheduleList>();
         }
     }
 }

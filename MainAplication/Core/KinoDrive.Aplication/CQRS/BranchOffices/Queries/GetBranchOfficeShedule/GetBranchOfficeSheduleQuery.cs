@@ -9,6 +9,6 @@ namespace KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficeShedule
 {
     public class GetBranchOfficeSheduleQuery :IRequest<BranchOfficeSheduleVm>
     {
-        public int Id { get; set; }
+        public int BranchOfficeId { get; set; }
     }
 }
