@@ -11,7 +11,6 @@ namespace KinoDriveWebAPI.Controllers
 {
     public class SeansController : BaseController
     {
-        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<SeanceDetailInfoVm>> GetSeanceDetailInfo(int seanceId)
         {

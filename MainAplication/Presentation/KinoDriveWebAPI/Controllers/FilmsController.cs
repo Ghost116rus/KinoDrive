@@ -20,7 +20,7 @@ namespace KinoDriveWebAPI.Controllers
             _mapper = mapper;
         }
 
-        [AllowAnonymous]
+
         [HttpGet]
         public async Task<ActionResult<ActiveFilmListVM>> GetActiveFilms()
         {
@@ -38,8 +38,6 @@ namespace KinoDriveWebAPI.Controllers
 
             return Ok(vm);
         }
-
-
 
     }
 }

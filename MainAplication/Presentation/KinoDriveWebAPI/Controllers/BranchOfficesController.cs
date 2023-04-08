@@ -5,6 +5,7 @@ using KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchDetails;
 using KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficeShedule;
 using KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficesListByCity;
 using KinoDriveWebAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -20,6 +21,7 @@ namespace KinoDriveWebAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateBranchOfficeDTO createDTO)
         {
             var command = mapper.Map<CreateBranchOfficeCommand>(createDTO);

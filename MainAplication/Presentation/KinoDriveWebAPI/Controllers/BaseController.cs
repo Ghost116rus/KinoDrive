@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Authorization;
 namespace KinoDriveWebAPI.Controllers
 {
     [ApiController]
-    [Authorize]
     [Route("api/[controller]/[action]")]
     public class BaseController : ControllerBase
     {
