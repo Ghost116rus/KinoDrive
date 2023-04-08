@@ -31,16 +31,22 @@ namespace KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficeShedule
                     .ToListAsync();
 
             var sessionShedule = new List<DatesForSheduleVM>();
-            var sessions = new Dictionary<string, IList<SeanceForBranchOfficeSheduleVm>>();
+            var DatesWFilms = new Dictionary<string, IList<FilmsForSheduleVM>>();
+            var FilmsWSessions = new Dictionary<int, IList<SeanceForBranchOfficeSheduleVm>>();
 
             foreach(var seance in seances)
             {
                 var date = seance.SeanceStartTime.Date.ToString().Split()[0];
 
-                if(!sessions.ContainsKey(date))
+                if(!DatesWFilms.ContainsKey(date))
                 {
-                    sessions.Add(date, new List<SeanceForBranchOfficeSheduleVm>());
-                    sessionShedule.Add(new DatesForSheduleVM { Date = date, Seances = sessions[date] });
+                    DatesWFilms.Add(date, new List<FilmsForSheduleVM>());
+                    sessionShedule.Add(new DatesForSheduleVM { Date = date, Films = DatesWFilms[date] });
+                }
+
+                if(!DatesWFilms[date].Contains(seance.Film.Id))
+                {
+
                 }
 
                 sessions[date].Add(mapper.Map<SeanceForBranchOfficeSheduleVm>(seance));

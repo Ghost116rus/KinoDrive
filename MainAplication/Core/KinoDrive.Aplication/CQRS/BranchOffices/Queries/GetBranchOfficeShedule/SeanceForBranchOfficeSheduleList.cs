@@ -11,6 +11,7 @@ namespace KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficeShedule
         public string Type { get; set; }
         public int BasicCost { get; set; }
         public DateTime SeanceStartTime { get; set; }
+        public FIlmVM Film { get; set; }
 
         public void Mapping(Profile profile)
         {
