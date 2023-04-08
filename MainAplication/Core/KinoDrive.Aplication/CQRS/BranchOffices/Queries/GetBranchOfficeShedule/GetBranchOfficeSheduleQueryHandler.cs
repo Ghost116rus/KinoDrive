@@ -56,9 +56,7 @@ namespace KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficeShedule
                 {
                     shedule[date].Add(filmID, new List<SeanceForBranchOfficeSheduleVm>());
                     sessionShedule.Find(x => x.Date == date)
-                        .Films.Add(new FilmsForSheduleVM { Film = seance.Film, Seances = shedule[date][filmID] });
-
-                        
+                        .Films.Add(new FilmsForSheduleVM { Film = seance.Film, Seances = shedule[date][filmID] });                        
                 }
 
                 shedule[date][filmID].Add(mapper.Map<SeanceForBranchOfficeSheduleVm>(seance));

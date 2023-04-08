@@ -1,6 +1,7 @@
 ﻿using KinoDrive.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 
 namespace KinoDrive.Persistance.EntityTypeConfiguration
@@ -15,6 +16,7 @@ namespace KinoDrive.Persistance.EntityTypeConfiguration
             builder.Property(branch => branch.Name).HasMaxLength(155);
             builder.Property(branch => branch.Adress).HasMaxLength(255);
             builder.Property(branch => branch.Description).HasMaxLength(1000);
+            builder.Property(branch => branch.Longitude).HasColumnType("decimal()")
         }
     }
 }

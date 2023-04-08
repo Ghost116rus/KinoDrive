@@ -9,6 +9,9 @@ namespace KinoDrive.Domain
         public string Name { get; set; }
         public string Adress { get; set; }
         public string Description { get; set; }
+        public float Longitude { get; set; }
+        public float Latitude { get; set; }
+
 
         public IEnumerable<CinemaHall> CinemaHalls { get; set; } = new List<CinemaHall>();
         public IEnumerable<Complaint> Complaintes { get; set; } = new List<Complaint>();

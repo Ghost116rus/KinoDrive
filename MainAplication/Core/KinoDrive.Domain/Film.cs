@@ -10,6 +10,7 @@ namespace KinoDrive.Domain
         public int Length { get; set; }
 
         public bool isActive { get; set; }
+        public string AgeRestriction { get; set; }
 
         public float Rating { get; set; }
         public float RatingOnKinopoisk { get; set; }

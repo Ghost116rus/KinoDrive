@@ -11,7 +11,6 @@ namespace KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficeShedule
     public class DatesForSheduleVM
     {
         public string Date { get; set; }
-
         public IList<FilmsForSheduleVM> Films { get; set; }
     }
 
