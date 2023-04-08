@@ -19,6 +19,7 @@ namespace KinoDrive.Persistance.EntityTypeConfiguration
             builder.Property(film => film.Name).HasMaxLength(500);
             builder.Property(film => film.Description).HasMaxLength(2000);
             builder.HasCheckConstraint("ReleaseYear", "ReleaseYear LIKE '[1,2][0,8,9][0-9][0-9]'");
+            builder.Property(film => film.AgeRestriction).HasColumnType("decimal(2,0)");
         }
     }
 }
