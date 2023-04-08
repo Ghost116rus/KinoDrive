@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using KinoDrive.Aplication.Common.Exceptions;
 using KinoDrive.Aplication.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -28,7 +29,8 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
                 .ProjectTo<FilmDetailInfo>(_mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync(film => film.Id == request.Id);
             
-            if (filmDetail == null) return null;
+            if (filmDetail == null)
+                throw new NotFoundException("FilmDetailInfo", request.Id);
 
             var seances = await _context.Seances
                 .Where(s => s.FilmId == request.Id)

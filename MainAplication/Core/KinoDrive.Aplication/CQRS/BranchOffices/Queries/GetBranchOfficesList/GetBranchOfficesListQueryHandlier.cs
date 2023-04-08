@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using KinoDrive.Aplication.Common.Exceptions;
 using KinoDrive.Aplication.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +30,7 @@ namespace KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficesList
 
             if (list.Count == 0)
             {
-                return null;
+                throw new NotFoundException("BranchOfficesList", -1);
             }
 
             var dict = new Dictionary<string, IList<BranchOfficeLookupForCity>>();

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using KinoDrive.Aplication.Common.Exceptions;
 using KinoDrive.Aplication.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,8 @@ namespace KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchDetails
         {
             var entity = await _context.BranchOffices
                 .FirstOrDefaultAsync(office => office.Id == request.Id, cancellationToken);
+
+            if (entity == null) throw new NotFoundException(nameof(BranchOfficeVm), request.Id);
 
 
             return _mapper.Map<BranchOfficeVm>(entity);

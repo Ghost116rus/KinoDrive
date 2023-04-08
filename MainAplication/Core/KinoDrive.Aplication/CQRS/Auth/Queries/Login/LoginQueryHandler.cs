@@ -1,5 +1,7 @@
-﻿using KinoDrive.Aplication.CQRS.Auth.Common;
+﻿using KinoDrive.Aplication.Common.Exceptions;
+using KinoDrive.Aplication.CQRS.Auth.Common;
 using KinoDrive.Aplication.Interfaces;
+using KinoDrive.Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -33,7 +35,7 @@ namespace KinoDrive.Aplication.CQRS.Auth.Queries.Login
                 }
             }
 
-            return new AuthResult("", false, "Неправильные учетный данные");
+            throw new NotFoundException(nameof(User), request.Email);
         }
     }
 }
