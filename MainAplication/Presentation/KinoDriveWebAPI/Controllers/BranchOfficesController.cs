@@ -3,6 +3,7 @@ using KinoDrive.Aplication.CQRS.BranchOffices.Commands.CreateBranchOffice;
 using KinoDrive.Aplication.CQRS.BranchOffices.Queries;
 using KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchDetails;
 using KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficeShedule;
+using KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficesList;
 using KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficesListByCity;
 using KinoDriveWebAPI.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -50,6 +51,15 @@ namespace KinoDriveWebAPI.Controllers
             {
                 BranchOfficeId = id
             };
+
+            var vm = await Mediator.Send(query);
+            return Ok(vm);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<BranchOfficeListVm>> GetOfficesList()
+        {
+            var query = new GetBranchOfficesListQuery();
 
             var vm = await Mediator.Send(query);
             return Ok(vm);

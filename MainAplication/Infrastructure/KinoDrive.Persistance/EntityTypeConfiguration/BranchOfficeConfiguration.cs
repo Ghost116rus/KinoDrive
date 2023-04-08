@@ -16,6 +16,10 @@ namespace KinoDrive.Persistance.EntityTypeConfiguration
             builder.Property(branch => branch.Name).HasMaxLength(155);
             builder.Property(branch => branch.Adress).HasMaxLength(255);
             builder.Property(branch => branch.Description).HasMaxLength(1000);
+            builder.Property(branch => branch.MobilePhone).HasColumnType("char(11)");
+            builder.Property(branch => branch.Email).HasMaxLength(255);
+            builder.Property(branch => branch.WorkTime).HasColumnType("char(11)");
+
         }
     }
 }
