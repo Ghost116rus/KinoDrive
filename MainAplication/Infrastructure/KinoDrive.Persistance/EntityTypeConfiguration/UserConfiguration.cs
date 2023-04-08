@@ -16,7 +16,11 @@ namespace KinoDrive.Persistance.EntityTypeConfiguration
             builder.HasKey(e => e.Id);
             builder.HasIndex(e => e.Id);
 
+            builder.Property(u => u.LastName).HasMaxLength(150);
+            builder.Property(u => u.FirstName).HasMaxLength(150);
             builder.Property(u => u.NickName).HasMaxLength(150);
+            builder.Property(u => u.Email).HasMaxLength(150);
+            builder.Property(u => u.Password).HasMaxLength(150);
         }
     }
 }
