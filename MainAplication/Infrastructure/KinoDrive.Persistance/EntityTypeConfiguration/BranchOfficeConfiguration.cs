@@ -15,9 +15,12 @@ namespace KinoDrive.Persistance.EntityTypeConfiguration
             builder.Property(branch => branch.City).HasMaxLength(50);
             builder.Property(branch => branch.Name).HasMaxLength(155);
             builder.Property(branch => branch.Adress).HasMaxLength(255);
-            builder.Property(branch => branch.Description).HasMaxLength(1000);
-            builder.Property(branch => branch.Description).HasMaxLength(1000);
-            builder.Property(branch => branch.Description).HasMaxLength(1000);
+            builder.Property(branch => branch.MobilePhone).HasMaxLength(11);
+            builder.Property(branch => branch.Email).HasMaxLength(255);
+            builder.Property(branch => branch.WorkTime).HasMaxLength(11);
+
+
+            builder.HasCheckConstraint("MobilePhone", "MobilePhone LIKE '[8][9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'");
         }
     }
 }

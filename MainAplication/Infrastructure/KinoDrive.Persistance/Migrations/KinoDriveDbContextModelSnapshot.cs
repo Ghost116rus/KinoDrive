@@ -34,7 +34,7 @@ namespace KinoDrive.Persistance.Migrations
 
                     b.HasIndex("FilmsId");
 
-                    b.ToTable("ActorFilm");
+                    b.ToTable("ActorFilm", (string)null);
                 });
 
             modelBuilder.Entity("FilmFilmDirector", b =>
@@ -49,7 +49,7 @@ namespace KinoDrive.Persistance.Migrations
 
                     b.HasIndex("FilmsId");
 
-                    b.ToTable("FilmFilmDirector");
+                    b.ToTable("FilmFilmDirector", (string)null);
                 });
 
             modelBuilder.Entity("FilmGenre", b =>
@@ -64,7 +64,7 @@ namespace KinoDrive.Persistance.Migrations
 
                     b.HasIndex("GenresId");
 
-                    b.ToTable("FilmGenre");
+                    b.ToTable("FilmGenre", (string)null);
                 });
 
             modelBuilder.Entity("KinoDrive.Domain.Actor", b =>
@@ -81,7 +81,7 @@ namespace KinoDrive.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Actors");
+                    b.ToTable("Actors", (string)null);
                 });
 
             modelBuilder.Entity("KinoDrive.Domain.Booking", b =>
@@ -115,7 +115,7 @@ namespace KinoDrive.Persistance.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Bookings");
+                    b.ToTable("Bookings", (string)null);
                 });
 
             modelBuilder.Entity("KinoDrive.Domain.BranchOffice", b =>
@@ -157,7 +157,7 @@ namespace KinoDrive.Persistance.Migrations
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.ToTable("BranchOffices");
+                    b.ToTable("BranchOffices", (string)null);
                 });
 
             modelBuilder.Entity("KinoDrive.Domain.CinemaHall", b =>
@@ -191,7 +191,7 @@ namespace KinoDrive.Persistance.Migrations
                     b.HasIndex("OfficeId", "Name")
                         .IsUnique();
 
-                    b.ToTable("CinemaHalls");
+                    b.ToTable("CinemaHalls", (string)null);
                 });
 
             modelBuilder.Entity("KinoDrive.Domain.Complaint", b =>
@@ -221,7 +221,7 @@ namespace KinoDrive.Persistance.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Complaints");
+                    b.ToTable("Complaints", (string)null);
                 });
 
             modelBuilder.Entity("KinoDrive.Domain.Film", b =>
@@ -267,7 +267,7 @@ namespace KinoDrive.Persistance.Migrations
 
                     b.HasIndex("Id");
 
-                    b.ToTable("Films");
+                    b.ToTable("Films", (string)null);
 
                     b.HasCheckConstraint("ReleaseYear", "ReleaseYear LIKE '[1,2][0,8,9][0-9][0-9]'");
                 });
@@ -290,7 +290,7 @@ namespace KinoDrive.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FilmDirectors");
+                    b.ToTable("FilmDirectors", (string)null);
                 });
 
             modelBuilder.Entity("KinoDrive.Domain.Genre", b =>
@@ -307,7 +307,7 @@ namespace KinoDrive.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres");
+                    b.ToTable("Genres", (string)null);
                 });
 
             modelBuilder.Entity("KinoDrive.Domain.Review", b =>
@@ -327,7 +327,7 @@ namespace KinoDrive.Persistance.Migrations
 
                     b.HasIndex("FilmId");
 
-                    b.ToTable("Reviews");
+                    b.ToTable("Reviews", (string)null);
                 });
 
             modelBuilder.Entity("KinoDrive.Domain.Seance", b =>
@@ -362,7 +362,7 @@ namespace KinoDrive.Persistance.Migrations
 
                     b.HasIndex("Id");
 
-                    b.ToTable("Seances");
+                    b.ToTable("Seances", (string)null);
                 });
 
             modelBuilder.Entity("KinoDrive.Domain.User", b =>
@@ -395,7 +395,7 @@ namespace KinoDrive.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("ActorFilm", b =>

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficesList
 {
-    public class GetBranchOfficesListQuery : IRequest<>
-    {
+    //public class GetBranchOfficesListQuery : IRequest<>
+    //{
 
-    }
+    //}
 }
