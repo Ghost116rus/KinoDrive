@@ -27,7 +27,29 @@ namespace KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficesList
         {
             var list = await _context.BranchOffices.ProjectTo<BranchOfficeVm>(_mapper.ConfigurationProvider).ToListAsync();
 
-            return new ListVM { OfficeList = list };
+            if (list.Count == 0)
+            {
+                return null;
+            }
+
+            var dict = new Dictionary<string, IList<BranchOfficeLookupForCity>>();
+            var officesList = new List<CityWTheatres>();
+
+            foreach (var office in list)
+            {
+                var city = office.City;
+
+                if(!dict.ContainsKey(city))
+                {
+                    dict.Add(city, new List<BranchOfficeLookupForCity>());
+                    officesList.Add(new CityWTheatres { City = city, Theatres = dict[city] });
+                }
+
+                dict[city].Add(_mapper.Map<BranchOfficeLookupForCity>(office));
+
+            }
+
+            return new ListVM { OfficeList = officesList };
         }
     }
 }
