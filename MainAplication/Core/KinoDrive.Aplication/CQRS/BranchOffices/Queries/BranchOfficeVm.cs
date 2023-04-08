@@ -10,8 +10,11 @@ namespace KinoDrive.Aplication.CQRS.BranchOffices.Queries
     {
         public int Id { get; set; }
         public string City { get; set; }
+        public string Name { get; set; }
         public string Adress { get; set; }
         public string Description { get; set; }
+        public float Longitude { get; set; }
+        public float Latitude { get; set; }
 
         public void Mapping(Profile profile)
         {

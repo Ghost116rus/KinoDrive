@@ -11,6 +11,9 @@ namespace KinoDrive.Domain
         public string Description { get; set; }
         public float Longitude { get; set; }
         public float Latitude { get; set; }
+        public string MobilePhone { get; set; }
+        public string Email { get; set; }
+        public string WorkTime { get; set; }
 
 
         public IEnumerable<CinemaHall> CinemaHalls { get; set; } = new List<CinemaHall>();

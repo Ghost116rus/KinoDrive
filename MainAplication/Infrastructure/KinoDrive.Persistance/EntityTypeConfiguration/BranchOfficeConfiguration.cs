@@ -16,6 +16,8 @@ namespace KinoDrive.Persistance.EntityTypeConfiguration
             builder.Property(branch => branch.Name).HasMaxLength(155);
             builder.Property(branch => branch.Adress).HasMaxLength(255);
             builder.Property(branch => branch.Description).HasMaxLength(1000);
+            builder.Property(branch => branch.Description).HasMaxLength(1000);
+            builder.Property(branch => branch.Description).HasMaxLength(1000);
         }
     }
 }
