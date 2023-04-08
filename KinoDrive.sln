@@ -15,13 +15,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{F93C5578-6E4A-46EE-9342-6CA2BE2F5440}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinoDriveWebAPI", "MainAplication\Presentation\KinoDriveWebAPI\KinoDriveWebAPI.csproj", "{44F6F1DE-3BB7-43DA-AFB7-5CF486F18125}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KinoDriveWebAPI", "MainAplication\Presentation\KinoDriveWebAPI\KinoDriveWebAPI.csproj", "{44F6F1DE-3BB7-43DA-AFB7-5CF486F18125}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinoDrive.Persistance", "MainAplication\Infrastructure\KinoDrive.Persistance\KinoDrive.Persistance.csproj", "{1B03FBD8-34FA-49AA-BE97-8DE89A2667B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KinoDrive.Persistance", "MainAplication\Infrastructure\KinoDrive.Persistance\KinoDrive.Persistance.csproj", "{1B03FBD8-34FA-49AA-BE97-8DE89A2667B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinoDrive.Aplication", "MainAplication\Core\KinoDrive.Aplication\KinoDrive.Aplication.csproj", "{55E3806E-F4F3-4267-AE63-1EC4139C3F91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KinoDrive.Aplication", "MainAplication\Core\KinoDrive.Aplication\KinoDrive.Aplication.csproj", "{55E3806E-F4F3-4267-AE63-1EC4139C3F91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinoDrive.Domain", "MainAplication\Core\KinoDrive.Domain\KinoDrive.Domain.csproj", "{06A63840-9D4E-4D9E-A1E5-840B2BFB37AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KinoDrive.Domain", "MainAplication\Core\KinoDrive.Domain\KinoDrive.Domain.csproj", "{06A63840-9D4E-4D9E-A1E5-840B2BFB37AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinoDrive.Authentication", "MainAplication\Infrastructure\KinoDrive.Authentication\KinoDrive.Authentication.csproj", "{830DB1C9-1B1A-4E8C-A4F4-110F4BC86812}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{06A63840-9D4E-4D9E-A1E5-840B2BFB37AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06A63840-9D4E-4D9E-A1E5-840B2BFB37AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06A63840-9D4E-4D9E-A1E5-840B2BFB37AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{830DB1C9-1B1A-4E8C-A4F4-110F4BC86812}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{830DB1C9-1B1A-4E8C-A4F4-110F4BC86812}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{830DB1C9-1B1A-4E8C-A4F4-110F4BC86812}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{830DB1C9-1B1A-4E8C-A4F4-110F4BC86812}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +63,7 @@ Global
 		{1B03FBD8-34FA-49AA-BE97-8DE89A2667B6} = {D42D8BF3-1AF0-4A55-9C5B-F743893212FA}
 		{55E3806E-F4F3-4267-AE63-1EC4139C3F91} = {2D5FC13B-AAE0-4172-B45F-409B3BD8124A}
 		{06A63840-9D4E-4D9E-A1E5-840B2BFB37AB} = {2D5FC13B-AAE0-4172-B45F-409B3BD8124A}
+		{830DB1C9-1B1A-4E8C-A4F4-110F4BC86812} = {D42D8BF3-1AF0-4A55-9C5B-F743893212FA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AF85D388-D17D-420D-B702-B1EC79DB6925}
