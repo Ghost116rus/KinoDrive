@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using KinoDrive.Authentication;
+using KinoDriveWebAPI.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -83,7 +84,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
+app.UseCustomExceptionHandler();
 app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();

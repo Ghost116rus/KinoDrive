@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using KinoDrive.Aplication.Common.Exceptions;
 using KinoDrive.Aplication.Interfaces;
+using KinoDrive.Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -34,7 +36,7 @@ namespace KinoDrive.Aplication.CQRS.Seanses.Queries.GetSeanceDetailInfo
 
             if (seanceInfo == null)
             {
-                return null;
+                throw new NotFoundException(nameof(Seance), request.SeanceId);
             }
 
             seanceInfo.Places = await kinoDriveDbContext.Bookings

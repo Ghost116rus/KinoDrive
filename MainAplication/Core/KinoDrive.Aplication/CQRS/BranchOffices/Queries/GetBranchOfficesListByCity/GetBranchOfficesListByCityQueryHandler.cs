@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using KinoDrive.Aplication.Common.Exceptions;
 using KinoDrive.Aplication.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,11 @@ namespace KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficesListBy
                 .Where(x => x.City == request.City)
                 .ProjectTo<BranchOfficeLookupDTO>(_mapper.ConfigurationProvider)
                 .ToListAsync();
+
+            if (list.Count == 0)
+            {
+                throw new NotFoundException("BranchOfficesList " + request.City, -1);
+            }
 
             return new BranchOfficeListVm { OfficeList = list };
         }

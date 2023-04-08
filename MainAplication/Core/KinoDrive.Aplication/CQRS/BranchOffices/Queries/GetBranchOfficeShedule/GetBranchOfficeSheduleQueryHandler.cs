@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using KinoDrive.Aplication.Common.Exceptions;
 using KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail;
 using KinoDrive.Aplication.Interfaces;
 using MediatR;
@@ -34,7 +35,7 @@ namespace KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficeShedule
 
             if (seances.Count == 0)
             {
-                return null;
+                throw new NotFoundException("BranchOfficeShedule", request.BranchOfficeId);
             }
 
             var sessionShedule = new List<DatesForSheduleVM>();

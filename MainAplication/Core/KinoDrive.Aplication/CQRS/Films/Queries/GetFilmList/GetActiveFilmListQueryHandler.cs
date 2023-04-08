@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using KinoDrive.Aplication.Common.Exceptions;
 using KinoDrive.Aplication.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,9 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmList
                 .Where(film => film.isActive == request.isActive)
                 .ProjectTo<ActiveFilmLookupDto>(mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
+
+            if(activeFilmsList.Count == 0)
+                throw new NotFoundException("GetActiveFilmList", -1);
 
             return new ActiveFilmListVM { FilmList = activeFilmsList };
         }
