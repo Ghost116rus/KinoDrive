@@ -1,6 +1,7 @@
 ﻿using KinoDrive.Aplication.CQRS.Other.Commands.Seances;
 using KinoDrive.Aplication.CQRS.Other.Queries;
 using KinoDrive.Aplication.CQRS.Other.Queries.Cities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace KinoDriveWebAPI.Controllers
             return Ok(vm);
         }
 
+        [Authorize]
         [HttpPut]
         public async Task<IActionResult> UpdateDatesForSeances()
         {
