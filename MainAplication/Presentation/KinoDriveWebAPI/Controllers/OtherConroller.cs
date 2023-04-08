@@ -1,6 +1,7 @@
 ﻿using KinoDrive.Aplication.CQRS.Other.Commands.Seances;
 using KinoDrive.Aplication.CQRS.Other.Queries;
 using KinoDrive.Aplication.CQRS.Other.Queries.Cities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace KinoDriveWebAPI.Controllers
 {
     public class OtherConroller : BaseController
     {
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<CityListVm>> GetCities()
         {

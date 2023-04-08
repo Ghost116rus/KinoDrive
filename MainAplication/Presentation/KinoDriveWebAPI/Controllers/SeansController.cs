@@ -1,4 +1,5 @@
 ﻿using KinoDrive.Aplication.CQRS.Seanses.Queries.GetSeanceDetailInfo;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace KinoDriveWebAPI.Controllers
 {
     public class SeansController : BaseController
     {
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<SeanceDetailInfoVm>> GetSeanceDetailInfo(int seanceId)
         {
