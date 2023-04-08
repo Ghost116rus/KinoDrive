@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using KinoDrive.Aplication.CQRS.Bookings.Commands;
 using KinoDriveWebAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace KinoDriveWebAPI.Controllers
 {
+    [Authorize]
     public class BookingController : BaseController
     {
         [HttpPost]

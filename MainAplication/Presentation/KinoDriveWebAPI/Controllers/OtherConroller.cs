@@ -13,7 +13,6 @@ namespace KinoDriveWebAPI.Controllers
 {
     public class OtherConroller : BaseController
     {
-        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<CityListVm>> GetCities()
         {
@@ -23,6 +22,7 @@ namespace KinoDriveWebAPI.Controllers
             return Ok(vm);
         }
 
+        [Authorize]
         [HttpPut]
         public async Task<IActionResult> UpdateDatesForSeances()
         {
