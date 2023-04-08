@@ -15,6 +15,9 @@ namespace KinoDrive.Aplication.CQRS.BranchOffices.Queries
         public string Description { get; set; }
         public float Longitude { get; set; }
         public float Latitude { get; set; }
+        public string MobilePhone { get; set; }
+        public string Email { get; set; }
+        public string WorkTime { get; set; }
 
         public void Mapping(Profile profile)
         {
