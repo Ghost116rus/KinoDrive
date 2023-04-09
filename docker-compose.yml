@@ -1,35 +1,37 @@
 version: "3.4"
 
 services:
-    webApi:
+
+    webapi:
         build:
           context: .
           dockerfile: MainAplication\Presentation\KinoDriveWebAPI\Dockerfile
-        container_name: mywebapi
+        container_name: kinodrivewebapi
         ports:
-          - "8080:5001"
+          - "8081:80"
         environment:
           - ASPNETCORE_ENVIRONMENT=Development
         depends_on:
           - mssql
 
-    mediaServer:
+    mediaserver:
         build:
           context: .
           dockerfile: MediaServer\WebAPI\MediaServer.WebAPI\Dockerfile
-        container_name: mymediaserver
+        container_name: kinodrivemediaserver
         ports:
-          - "8080:5002"
-        volumes:
-          - "media_static_files:/media"
+          - "8082:80"
         environment:
           - ASPNETCORE_ENVIRONMENT=Development
+        volumes:
+          - "media_static_files:/media"
         depends_on:
+          - webapi
           - mssql
 
     mssql:
         image: mcr.microsoft.com/mssql/server:2019-latest
-        container_name: database
+        container_name: kino_drive_db
         ports:
           - 1433:1433
         volumes:
