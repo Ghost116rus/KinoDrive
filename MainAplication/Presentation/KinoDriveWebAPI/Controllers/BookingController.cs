@@ -15,8 +15,14 @@ namespace KinoDriveWebAPI.Controllers
     public class BookingController : BaseController
     {
         [HttpPost]
-        public async Task<IActionResult> BookingTickets([FromBody] AddNewBookingRecordCommand command)
+        public async Task<IActionResult> BookingTickets([FromBody] AddNewBookingRecordDTO request)
         {
+            var command = new AddNewBookingRecordCommand()
+            {
+                UserId = int.Parse(base.GetUserId()),
+                SeanceId = request.SeanceId,
+                Tickets = request.Tickets
+            };
             await Mediator.Send(command);
 
             return Created($"{command.UserId}", command.UserId);
