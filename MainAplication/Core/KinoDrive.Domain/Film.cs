@@ -22,5 +22,6 @@ namespace KinoDrive.Domain
         public IEnumerable<Genre>? Genres { get; set; } 
         public IEnumerable<FilmDirector>? FilmDirectors { get; set; }
         public IEnumerable<Actor>? Actors { get; set; }
+        public IEnumerable<FilmImage>? Images { get; set; }
     }
 }

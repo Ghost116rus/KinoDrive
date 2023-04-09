@@ -21,6 +21,8 @@ namespace KinoDrive.Aplication.Interfaces
         public DbSet<FilmDirector> FilmDirectors { get; set; }
         public DbSet<Actor> Actors { get; set; }
 
+        public DbSet<FilmImage> FilmImages { get; set; }
+
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }
