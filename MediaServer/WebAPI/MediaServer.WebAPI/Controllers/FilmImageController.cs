@@ -23,7 +23,7 @@ namespace MediaServer.WebAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> SaveMedia(int filmId, List<IFormFile> files)
         {
-            int count = 0;
+            int count = await _filmImageService.SaveImages(filmId, files);
 
             return Created("Files", count);
         }

@@ -1,6 +1,8 @@
 
 
 
+using MediaCore.Aplication.Interfaces;
+using MediaCore.Aplication.Services;
 using MediaServer.DAL;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,8 @@ var services = builder.Services;
 
 
 services.AddDAL(builder.Configuration);
+
+services.AddScoped<IFilmImageService, FilmImageService>();
 
 builder.Services.AddControllers();
 
