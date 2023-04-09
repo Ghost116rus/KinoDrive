@@ -27,7 +27,7 @@ namespace KinoDrive.Authentication
             var securityToken = new JwtSecurityToken(
                 issuer: "KinoDrive",
                 audience: "KinoDrive",
-                expires: DateTime.UtcNow.AddMinutes(60),
+                expires: DateTime.UtcNow.AddDays(30),
                 claims: claims,
                 signingCredentials: signingCredentials);
 
