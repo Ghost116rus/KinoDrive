@@ -1,0 +1,44 @@
+version: "3.4"
+
+services:
+    webApi:
+        build:
+          context: .
+          dockerfile: MainAplication\Presentation\KinoDriveWebAPI\Dockerfile
+        container_name: mywebapi
+        ports:
+          - "8080:5001"
+        environment:
+          - ASPNETCORE_ENVIRONMENT=Development
+        depends_on:
+          - mssql
+
+    mediaServer:
+        build:
+          context: .
+          dockerfile: MediaServer\WebAPI\MediaServer.WebAPI\Dockerfile
+        container_name: mymediaserver
+        ports:
+          - "8080:5002"
+        volumes:
+          - "media_static_files:/media"
+        environment:
+          - ASPNETCORE_ENVIRONMENT=Development
+        depends_on:
+          - mssql
+
+    mssql:
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        container_name: database
+        ports:
+          - 1433:1433
+        volumes:
+            - sql_data_volume:/var/opt/mssql
+        environment:
+            SA_PASSWORD: "S3cur3P@ssW0rd!"
+            ACCEPT_EULA: "Y"
+
+
+volumes: 
+    sql_data_volume:
+    media_static_files:
