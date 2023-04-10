@@ -8,7 +8,7 @@ services:
           dockerfile: MainAplication\Presentation\KinoDriveWebAPI\Dockerfile
         container_name: kinodrivewebapi
         ports:
-          - "8081:80"
+          - "8081:40"
         environment:
           - ASPNETCORE_ENVIRONMENT=Development
         depends_on:
@@ -24,7 +24,7 @@ services:
         environment:
           - ASPNETCORE_ENVIRONMENT=Development
         volumes:
-          - "media_static_files:/media"
+          - "media:/media"
         depends_on:
           - webapi
           - mssql
@@ -46,10 +46,11 @@ services:
         image: nginx:mainline
         volumes: 
             - ./nginx.conf:/etc/nginx/nginx.conf
+            - "media:/var/www/www.KinoDrive.ru/html/public/media/"
         ports:
-          - "8080:80"
+          - "80:5001"
 
 
 volumes: 
     sql_data_volume:
-    media_static_files:
+    media:
