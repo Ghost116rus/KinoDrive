@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace MediaServer.WebAPI.Controllers
 {
     [ApiController]
-    [Route("api/filmImages")]
+    [Route("api/MediaServer/filmImages")]
     public class FilmImageController : ControllerBase
     {
         IFilmImageService _filmImageService;
