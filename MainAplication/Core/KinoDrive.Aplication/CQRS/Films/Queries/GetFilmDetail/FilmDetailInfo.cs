@@ -25,6 +25,9 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
         public IList<StaffFilmVM>? Actors { get; set; }
         public IList<GenreVm>? Genres { get; set; }
 
+        public string Poster { get; set; }
+        public IList<string> ImagesUrls { get; set; } = new List<string>();
+
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Film, FilmDetailInfo>();

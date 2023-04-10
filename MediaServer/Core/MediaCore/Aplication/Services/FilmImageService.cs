@@ -17,7 +17,7 @@ namespace MediaCore.Aplication.Services
     {
         private readonly IMediaServerContext _context;
 
-        private string _filePath;
+        private string _filePath = "../../media/";
 
         public FilmImageService(IMediaServerContext context)
         {
@@ -57,17 +57,17 @@ namespace MediaCore.Aplication.Services
 
             if (film == null) return -1;
 
-            _filePath = "../../media/" + MakeDirPath(film.Name);
+            var filePath = _filePath + MakeDirPath(film.Name);
 
-            if (!Directory.Exists(_filePath))
+            if (!Directory.Exists(filePath))
             {
-                Directory.CreateDirectory(_filePath);
+                Directory.CreateDirectory(filePath);
             }
 
             var extension = file.FileName.Split(".");
             var name = "poster." + extension[extension.Length - 1];
 
-            string fullPath = $"{_filePath}/{name}";
+            string fullPath = $"{filePath}/{name}";
 
             var inetAddress = fullPath.Substring(6);
             await AddNewRecordFilmImage(filmId, name, inetAddress);
@@ -89,18 +89,18 @@ namespace MediaCore.Aplication.Services
 
             if (film == null) return -1;
 
-            _filePath = "../../media/" + MakeDirPath(film.Name);
+            var filePath = _filePath + MakeDirPath(film.Name);
 
 
-            if (!Directory.Exists(_filePath))
+            if (!Directory.Exists(filePath))
             {
-                Directory.CreateDirectory(_filePath);
+                Directory.CreateDirectory(filePath);
             }
 
             foreach (var file in files)
             {
                 // путь к папке uploads
-                string fullPath = $"{_filePath}/{file.FileName}";
+                string fullPath = $"{filePath}/{file.FileName}";
                 var inetAddress = fullPath.Substring(6);
                 await AddNewRecordFilmImage(filmId, file.FileName, inetAddress);
 
