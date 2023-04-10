@@ -51,8 +51,19 @@ namespace MediaCore.Aplication.Services
             }
         }
 
-        private async Task SavePoster(int filmId, IFormFile file)
+        public async Task<int> SavePoster(int filmId, IFormFile file, CancellationToken cancellationToken)
         {
+            var film = await _context.Films.FirstOrDefaultAsync(x => x.Id == filmId);
+
+            if (film == null) return -1;
+
+            _filePath = "../../media/" + MakeDirPath(film.Name);
+
+            if (!Directory.Exists(_filePath))
+            {
+                Directory.CreateDirectory(_filePath);
+            }
+
             var extension = file.FileName.Split(".");
             var name = "poster." + extension[extension.Length - 1];
 
@@ -65,7 +76,9 @@ namespace MediaCore.Aplication.Services
             using (var fileStream = new FileStream(fullPath, FileMode.Create))
             {
                 await file.CopyToAsync(fileStream);
-            }            
+            }
+
+            return 4;
 
         }
 
@@ -83,8 +96,6 @@ namespace MediaCore.Aplication.Services
             {
                 Directory.CreateDirectory(_filePath);
             }
-
-            var poster = files[0]; await SavePoster(filmId, poster); files.RemoveAt(0);
 
             foreach (var file in files)
             {

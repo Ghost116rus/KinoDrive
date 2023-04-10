@@ -9,6 +9,7 @@ namespace MediaCore.Aplication.Interfaces
 {
     public interface IFilmImageService
     {
+        Task<int> SavePoster(int filmId, IFormFile file, CancellationToken cancellationToken);
         Task<int> SaveImages(int filmId, List<IFormFile> files, CancellationToken cancellationToken);
     }
 }

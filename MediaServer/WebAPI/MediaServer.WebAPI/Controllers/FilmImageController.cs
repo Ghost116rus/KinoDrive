@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace MediaServer.WebAPI.Controllers
 {
     [ApiController]
-    [Route("api/MediaServer/filmImages")]
+    [Route("api/MediaServer/filmImages/[action]")]
     public class FilmImageController : ControllerBase
     {
         IFilmImageService _filmImageService;
@@ -19,6 +19,13 @@ namespace MediaServer.WebAPI.Controllers
             _filmImageService = filmImageService;
         }
 
+        [HttpPost]
+        public async Task<IActionResult> SavePoster(int filmId, IFormFile file)
+        {
+            int count = await _filmImageService.SavePoster(filmId, file, new CancellationToken());
+
+            return Created("Files", count);
+        }
 
         [HttpPost]
         public async Task<IActionResult> SaveMedia(int filmId, List<IFormFile> files)
