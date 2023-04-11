@@ -13,6 +13,7 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmList
         public float RatingOnKinopoisk { get; set; }
         public int RatingOnImdb { get; set; }
         public IList<GenreVm> Genres { get; set; }
+        public string Poster { get; set; }
 
         public void Mapping(Profile profile)
         {

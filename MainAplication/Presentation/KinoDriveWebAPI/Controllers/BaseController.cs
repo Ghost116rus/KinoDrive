@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace KinoDriveWebAPI.Controllers
 {
     [ApiController]
-    [Route("api/[controller]/[action]")]
+    [Route("KinoDriveWebApi/[controller]/[action]")]
     public class BaseController : ControllerBase
     {
         private IMediator _mediator;

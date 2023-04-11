@@ -22,6 +22,7 @@ namespace KinoDrive.Persistance
         public DbSet<Genre> Genres { get; set; }
         public DbSet<FilmDirector> FilmDirectors { get; set; }
         public DbSet<Actor> Actors { get; set; }
+        public DbSet<FilmImage> FilmImages { get; set; }
 
 
         public KinoDriveDbContext(DbContextOptions<KinoDriveDbContext> options)
@@ -38,6 +39,7 @@ namespace KinoDrive.Persistance
 
             builder.ApplyConfiguration(new ComplaintsConfiguration());
             builder.ApplyConfiguration(new ReviewConfiguration());        
+            builder.ApplyConfiguration(new FilmImageConfiguration());        
 
             base.OnModelCreating(builder);
         }

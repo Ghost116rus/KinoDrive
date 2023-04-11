@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using KinoDrive.Aplication.Common.Exceptions;
+using KinoDrive.Aplication.Common.LocalHostUrls;
 using KinoDrive.Aplication.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -31,6 +32,27 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
             
             if (filmDetail == null)
                 throw new NotFoundException("FilmDetailInfo", request.Id);
+
+            var images = await _context.FilmImages
+                .Where(i => i.FilmId == filmDetail.Id).ToListAsync();
+
+            if (images is not null)
+            {
+                foreach (var img in images)
+                {
+                    img.UrlForFile = LocalHostUrlForMedia.Url + img.UrlForFile;
+
+                    if (img.UrlForFile.Contains("poster"))
+                    {
+                        filmDetail.Poster = img.UrlForFile;
+                    }
+                    else
+                    {
+                        filmDetail.ImagesUrls.Add(img.UrlForFile);
+                    }
+                }
+            }
+
 
             var seances = await _context.Seances
                 .Where(s => s.FilmId == request.Id)

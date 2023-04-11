@@ -4,14 +4,12 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>dbf3aa1a-d1f9-4b7d-8194-a72cd95cabaf</UserSecretsId>
+    <UserSecretsId>4fd880e8-ec39-400b-a541-4f6417ff2667</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..\..</DockerfileContext>
-    <DockerComposeProjectPath>..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.15">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -21,9 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\KinoDrive.Aplication\KinoDrive.Aplication.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\KinoDrive.Authentication\KinoDrive.Authentication.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\KinoDrive.Persistance\KinoDrive.Persistance.csproj" />
+    <ProjectReference Include="..\..\Core\MediaCore\MediaCore.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\MediaServer.DAL\MediaServer.DAL.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using KinoDrive.Aplication.Common.Exceptions;
+using KinoDrive.Aplication.Common.LocalHostUrls;
 using KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail;
 using KinoDrive.Aplication.Interfaces;
 using MediatR;
@@ -36,6 +37,16 @@ namespace KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficeShedule
             if (seances.Count == 0)
             {
                 throw new NotFoundException("BranchOfficeShedule", request.BranchOfficeId);
+            }
+
+            foreach (var seance in seances)
+            {
+                var poster = await kinoDriveDbContext.FilmImages
+                    .FirstOrDefaultAsync(x => x.FilmId == seance.Film.Id && x.UrlForFile.Contains("poster"));
+                if (poster is not null)
+                {
+                    seance.Film.PosterURL = LocalHostUrlForMedia.Url + poster.UrlForFile;
+                }
             }
 
             var sessionShedule = new List<DatesForSheduleVM>();

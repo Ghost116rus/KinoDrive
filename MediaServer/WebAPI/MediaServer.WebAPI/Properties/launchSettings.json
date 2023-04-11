@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "KinoDriveWebAPI": {
+    "MediaServer.WebAPI": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
@@ -8,7 +8,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "https://localhost:7174;http://localhost:5174"
+      "applicationUrl": "https://localhost:7090;http://localhost:5090"
     },
     "IIS Express": {
       "commandName": "IISExpress",
@@ -31,8 +31,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:38459",
-      "sslPort": 44357
+      "applicationUrl": "http://localhost:20590",
+      "sslPort": 44331
     }
   }
 }
