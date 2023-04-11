@@ -8,6 +8,6 @@ namespace KinoDrive.Aplication.Common.LocalHostUrls
 {
     public static class LocalHostUrlForMedia
     {
-        public static string Url = "http://localhost/";
+        public static string Url = "http://localhost:880/";
     }
 }
