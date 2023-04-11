@@ -24,7 +24,7 @@ namespace KinoDrive.Aplication.CQRS.Auth.Commands.Register
 
             if (user is not null)
             {
-                return new AuthResult("", false, "Такой пользователь уже существует");
+                return new AuthResult("", false, "Такой пользователь уже существует", null);
             }
 
             var newUser = new User
@@ -42,7 +42,7 @@ namespace KinoDrive.Aplication.CQRS.Auth.Commands.Register
 
             var token = _jwtTokenGenerator.GenerateToken(newUser);
 
-            return new AuthResult(token, true, "");
+            return new AuthResult(token, true, "", new AdditionalInfo { NickName = newUser.NickName });
         }
     }
 }
