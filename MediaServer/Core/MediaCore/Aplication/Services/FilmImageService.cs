@@ -78,6 +78,8 @@ namespace MediaCore.Aplication.Services
                 await file.CopyToAsync(fileStream);
             }
 
+            await _context.SaveChangesAsync(cancellationToken);
+
             return 4;
 
         }
