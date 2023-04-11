@@ -27,6 +27,8 @@ namespace KinoDrive.Aplication.CQRS.UserCabinet.Queries.GetBookingTickets
             profile.CreateMap<Booking, TicketVm>()
                 .ForMember(t => t.SeanceStartTime,
                     opt => opt.MapFrom(b => b.Seance.SeanceStartTime))
+                .ForMember(t => t.FilmName,
+                    opt => opt.MapFrom(b => b.Seance.Film.Name))
                 .ForMember(t => t.CinemaHallName,
                     opt => opt.MapFrom(b => b.Seance.CinemaHall.Name))
                 .ForMember(t => t.BranchOfficeName,

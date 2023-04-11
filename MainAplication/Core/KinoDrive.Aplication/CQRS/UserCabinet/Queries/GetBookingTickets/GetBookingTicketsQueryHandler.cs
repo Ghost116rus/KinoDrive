@@ -26,19 +26,17 @@ namespace KinoDrive.Aplication.CQRS.UserCabinet.Queries.GetBookingTickets
         public async Task<BookingTicketsVm> Handle(GetBookingTicketsQuery request,
             CancellationToken cancellationToken)
         {
-            var past = _kinoDriveDbContext.Bookings
+            var future = await _kinoDriveDbContext.Bookings
                 .Where(b => b.UserId == request.UserId && b.Seance.SeanceStartTime > DateTime.Now)
                 .ProjectTo<TicketVm>(_mapper.ConfigurationProvider)
                 .ToListAsync();
 
-            var future = _kinoDriveDbContext.Bookings
+            var past = await _kinoDriveDbContext.Bookings
                 .Where(b => b.UserId == request.UserId && b.Seance.SeanceStartTime <= DateTime.Now)
                 .ProjectTo<TicketVm>(_mapper.ConfigurationProvider)
                 .ToListAsync();
 
-            await Task.WhenAll(past, future);
-
-            return new BookingTicketsVm { Past = past.Result, Future = future.Result };
+            return new BookingTicketsVm { Past = past, Future = future };
         }
     }
 }

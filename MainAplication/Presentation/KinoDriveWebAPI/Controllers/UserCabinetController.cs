@@ -1,4 +1,5 @@
 ﻿using KinoDrive.Aplication.CQRS.UserCabinet.Queries.GetBookingTickets;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,12 +9,16 @@ using System.Threading.Tasks;
 
 namespace KinoDriveWebAPI.Controllers
 {
-    public class UserController : BaseController
+    public class UserCabinetController : BaseController
     {
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult> GetBookingTickets()
         {
-            var query = new GetBookingTicketsQuery();
+            var query = new GetBookingTicketsQuery()
+            {
+                UserId = int.Parse(base.GetUserId())
+            };
             var vm = await Mediator.Send(query);
 
             return Ok(vm);
