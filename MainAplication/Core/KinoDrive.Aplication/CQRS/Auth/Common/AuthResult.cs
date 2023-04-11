@@ -6,5 +6,9 @@ using System.Threading.Tasks;
 
 namespace KinoDrive.Aplication.CQRS.Auth.Common
 {
-    public record AuthResult(string Token, bool IsSuccess, string? Description);
+    public class AdditionalInfo
+    {
+        public string NickName { get; set; }
+    }
+    public record AuthResult(string Token, bool IsSuccess, string? Description, AdditionalInfo? userInfo);
 }
