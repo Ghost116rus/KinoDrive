@@ -27,10 +27,10 @@ namespace KinoDrive.Aplication.CQRS.UserCabinet.Commands.ChangeUserData
 
             if (user == null) throw new NotFoundException("User", -1);
 
-            if (command.FirstName is not null)  { user.FirstName = command.FirstName; }
-            if (command.LastName is not null)   { user.LastName = command.LastName; }
-            if (command.NickName is not null)   { user.NickName = command.NickName; }
-            if (command.Email is not null)      { user.Email = command.Email; }
+            user.FirstName = command.FirstName; 
+            user.LastName = command.LastName; 
+            user.NickName = command.NickName; 
+            user.Email = command.Email; 
 
             await _context.SaveChangesAsync(cancellationToken);
         }
