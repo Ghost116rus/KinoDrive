@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KinoDrive.Aplication.CQRS.Reviews.Commands
+namespace KinoDrive.Aplication.CQRS.Reviews.Commands.AddNewReview
 {
     public class AddNewReviewCommand : IRequest
     {

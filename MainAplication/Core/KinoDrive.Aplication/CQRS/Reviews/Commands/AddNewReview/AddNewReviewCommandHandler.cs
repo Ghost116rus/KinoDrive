@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KinoDrive.Aplication.CQRS.Reviews.Commands
+namespace KinoDrive.Aplication.CQRS.Reviews.Commands.AddNewReview
 {
     public class AddNewReviewCommandHandler
         : IRequestHandler<AddNewReviewCommand>
@@ -19,8 +19,8 @@ namespace KinoDrive.Aplication.CQRS.Reviews.Commands
             _context = context;
         }
 
-       public async Task Handle(AddNewReviewCommand command, 
-           CancellationToken cancellationToken)
+        public async Task Handle(AddNewReviewCommand command,
+            CancellationToken cancellationToken)
         {
             var review = new Review
             {

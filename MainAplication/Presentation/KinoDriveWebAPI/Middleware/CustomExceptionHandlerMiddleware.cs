@@ -43,11 +43,15 @@ namespace KinoDriveWebAPI.Middleware
                     code = HttpStatusCode.BadRequest;
                     result = JsonSerializer.Serialize(validationException.Errors);
                     break;
+
+                case NotFoundException:
+                    code = HttpStatusCode.NotFound;
+                    break;
                 case BadDataException:
                     code = HttpStatusCode.BadRequest;
                     break;
-                case NotFoundException:
-                    code = HttpStatusCode.NotFound;
+                case NotAccessException:
+                    code = HttpStatusCode.Forbidden;
                     break;
 
                 default:
