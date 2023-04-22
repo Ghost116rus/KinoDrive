@@ -16,7 +16,7 @@ namespace KinoDrive.Domain
         public float RatingOnKinopoisk { get; set; }
         public float RatingOnImdb { get; set; }
 
-        public string UrlForTrailer { get; set; }
+        public string? UrlForTrailer { get; set; }
 
         public IEnumerable<Review>? Reviews { get; set; }
         public IEnumerable<Seance>? Seances { get; set; }
