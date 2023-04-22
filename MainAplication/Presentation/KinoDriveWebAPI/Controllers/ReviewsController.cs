@@ -1,5 +1,7 @@
 ﻿using KinoDrive.Aplication.CQRS.Reviews.Commands;
+using KinoDrive.Aplication.CQRS.Reviews.Commands.AddNewRating;
 using KinoDrive.Aplication.CQRS.Reviews.Commands.AddNewReview;
+using KinoDrive.Aplication.CQRS.Reviews.Commands.ChangeRating;
 using KinoDrive.Aplication.CQRS.Reviews.Commands.ChangeReview;
 using KinoDriveWebAPI.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -42,7 +44,36 @@ namespace KinoDriveWebAPI.Controllers
             await Mediator.Send(command);
 
             return NoContent();
+        }
 
+
+        [HttpPost]
+        public async Task<IActionResult> MakeUserRatingForFilm([FromBody] RatingDTO rating)
+        {
+            var command = new AddNewRatingCommand()
+            {
+                UserID = int.Parse(base.GetUserId()),
+                FilmId = rating.FilmId,
+                Value = rating.Value
+            };
+            await Mediator.Send(command);
+
+            return Created($"{command.UserID}", command.UserID);
+
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> ChangeRating([FromBody] RatingDTO rating)
+        {
+            var command = new ChangeRatingCommand()
+            {
+                UserID = int.Parse(base.GetUserId()),
+                FilmId = rating.FilmId,
+                NewValue = rating.Value
+            };
+            await Mediator.Send(command);
+
+            return NoContent();
         }
     }
 }
