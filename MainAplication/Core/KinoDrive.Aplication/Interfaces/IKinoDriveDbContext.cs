@@ -15,7 +15,6 @@ namespace KinoDrive.Aplication.Interfaces
         public DbSet<Booking> Bookings { get; set; }
 
         public DbSet<Review> Reviews { get; set; }
-        public DbSet<UserFilmRating> UserFilmRatings { get; set; }
         public DbSet<Complaint> Complaints { get; set; }
 
         public DbSet<Genre> Genres { get; set; }

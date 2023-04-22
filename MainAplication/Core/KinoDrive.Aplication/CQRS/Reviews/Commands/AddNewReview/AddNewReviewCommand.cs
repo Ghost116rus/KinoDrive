@@ -11,6 +11,7 @@ namespace KinoDrive.Aplication.CQRS.Reviews.Commands.AddNewReview
     {
         public int UserId { get; set; }
         public int FilmId { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
+        public int Value { get; set; }
     }
 }

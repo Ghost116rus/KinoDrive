@@ -10,8 +10,10 @@ namespace KinoDrive.Domain
     {
         public int UserId { get; set; }
         public int FilmId { get; set; }
+        public int Value { get; set; }
+        public DateTime ChangeDate { get; set; }
         public User User { get; set; }
         public Film Film { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
     }
 }

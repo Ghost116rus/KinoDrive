@@ -17,7 +17,6 @@ namespace KinoDrive.Persistance
         public DbSet<Booking> Bookings{ get; set; }
 
         public DbSet<Review> Reviews { get; set; }
-        public DbSet<UserFilmRating> UserFilmRatings { get; set; }
         public DbSet<Complaint> Complaints { get; set; }
 
         public DbSet<Genre> Genres { get; set; }
@@ -39,8 +38,7 @@ namespace KinoDrive.Persistance
             builder.ApplyConfiguration(new BookingConfiguration());
 
             builder.ApplyConfiguration(new ComplaintsConfiguration());
-            builder.ApplyConfiguration(new ReviewConfiguration());        
-            builder.ApplyConfiguration(new UserFilmRatingComfiguration());        
+            builder.ApplyConfiguration(new ReviewConfiguration());               
             builder.ApplyConfiguration(new FilmImageConfiguration());        
 
             base.OnModelCreating(builder);

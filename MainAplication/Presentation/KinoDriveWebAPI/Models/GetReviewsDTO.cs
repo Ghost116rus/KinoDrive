@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace KinoDriveWebAPI.Models
 {
-    public class RatingDTO
+    public class GetReviewsDTO
     {
         public int FilmId { get; set; }
-        public int Value { get; set; }
     }
 }

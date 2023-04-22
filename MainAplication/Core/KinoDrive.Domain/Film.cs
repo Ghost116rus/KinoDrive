@@ -19,7 +19,6 @@ namespace KinoDrive.Domain
         public string UrlForTrailer { get; set; }
 
         public IEnumerable<Review>? Reviews { get; set; }
-        public IEnumerable<UserFilmRating>? UserFilmRating { get; set; }
         public IEnumerable<Seance>? Seances { get; set; }
 
         public IEnumerable<Genre>? Genres { get; set; } 
