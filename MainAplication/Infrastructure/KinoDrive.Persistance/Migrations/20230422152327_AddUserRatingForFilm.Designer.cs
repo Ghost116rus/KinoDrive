@@ -4,6 +4,7 @@ using KinoDrive.Persistance;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KinoDrive.Persistance.Migrations
 {
     [DbContext(typeof(KinoDriveDbContext))]
-    partial class KinoDriveDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230422152327_AddUserRatingForFilm")]
+    partial class AddUserRatingForFilm
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -273,11 +275,6 @@ namespace KinoDrive.Persistance.Migrations
                     b.Property<int>("ReleaseYear")
                         .HasColumnType("int");
 
-                    b.Property<string>("UrlForTrailer")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
                     b.Property<bool>("isActive")
                         .HasColumnType("bit");
 
@@ -364,15 +361,10 @@ namespace KinoDrive.Persistance.Migrations
                     b.Property<int>("FilmId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("ChangeDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasMaxLength(2000)
                         .HasColumnType("nvarchar(2000)");
-
-                    b.Property<int>("Value")
-                        .HasColumnType("int");
 
                     b.HasKey("UserId", "FilmId");
 
@@ -447,6 +439,24 @@ namespace KinoDrive.Persistance.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("KinoDrive.Domain.UserFilmRating", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FilmId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Value")
+                        .HasColumnType("decimal(2,0)");
+
+                    b.HasKey("UserId", "FilmId");
+
+                    b.HasIndex("FilmId");
+
+                    b.ToTable("UserFilmRating");
                 });
 
             modelBuilder.Entity("ActorFilm", b =>
@@ -592,6 +602,25 @@ namespace KinoDrive.Persistance.Migrations
                     b.Navigation("Film");
                 });
 
+            modelBuilder.Entity("KinoDrive.Domain.UserFilmRating", b =>
+                {
+                    b.HasOne("KinoDrive.Domain.Film", "Film")
+                        .WithMany("UserFilmRating")
+                        .HasForeignKey("FilmId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KinoDrive.Domain.User", "User")
+                        .WithMany("UserFilmRating")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Film");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("KinoDrive.Domain.BranchOffice", b =>
                 {
                     b.Navigation("CinemaHalls");
@@ -611,6 +640,8 @@ namespace KinoDrive.Persistance.Migrations
                     b.Navigation("Reviews");
 
                     b.Navigation("Seances");
+
+                    b.Navigation("UserFilmRating");
                 });
 
             modelBuilder.Entity("KinoDrive.Domain.Seance", b =>
@@ -625,6 +656,8 @@ namespace KinoDrive.Persistance.Migrations
                     b.Navigation("Complaintes");
 
                     b.Navigation("Reviews");
+
+                    b.Navigation("UserFilmRating");
                 });
 #pragma warning restore 612, 618
         }

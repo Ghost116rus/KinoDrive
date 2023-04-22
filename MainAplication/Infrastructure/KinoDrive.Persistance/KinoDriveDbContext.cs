@@ -38,7 +38,7 @@ namespace KinoDrive.Persistance
             builder.ApplyConfiguration(new BookingConfiguration());
 
             builder.ApplyConfiguration(new ComplaintsConfiguration());
-            builder.ApplyConfiguration(new ReviewConfiguration());        
+            builder.ApplyConfiguration(new ReviewConfiguration());               
             builder.ApplyConfiguration(new FilmImageConfiguration());        
 
             base.OnModelCreating(builder);
