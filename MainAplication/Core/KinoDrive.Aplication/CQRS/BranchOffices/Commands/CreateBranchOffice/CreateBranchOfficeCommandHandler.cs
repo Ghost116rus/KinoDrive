@@ -36,6 +36,24 @@ namespace KinoDrive.Aplication.CQRS.BranchOffices.Commands.CreateBranchOffice
             };
 
             await _context.BranchOffices.AddAsync(branch, cancellationToken);
+
+            await _context.SaveChangesAsync(cancellationToken);
+
+            var cinemaHallNumber = 1;
+            foreach (var cinemaHall in request.CinemaHallsList)
+            {
+                var cinema = new CinemaHall()
+                {
+                    Name = cinemaHallNumber++,
+                    Type = cinemaHall.Type,
+                    OfficeId = branch.Id,
+                    NumOfRow = cinemaHall.NumOfRow,
+                    NumOfPlacesInRow = cinemaHall.NumOfPlacesInRow,
+                };
+
+                await _context.CinemaHalls.AddAsync(cinema, cancellationToken);
+            }
+
             await _context.SaveChangesAsync(cancellationToken);
 
             return branch.Id;

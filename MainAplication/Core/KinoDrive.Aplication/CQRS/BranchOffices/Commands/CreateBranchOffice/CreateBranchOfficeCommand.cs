@@ -7,11 +7,7 @@ using System.Threading.Tasks;
 
 namespace KinoDrive.Aplication.CQRS.BranchOffices.Commands.CreateBranchOffice
 {
-    public class CinemaHallLookupDTO
-    {
-        public int NumOfRow { get; set; }
-        public int NumOfPlacesInRow { get; set; }
-    }
+
 
     public class CreateBranchOfficeCommand : IRequest<int>
     {
@@ -30,6 +26,8 @@ namespace KinoDrive.Aplication.CQRS.BranchOffices.Commands.CreateBranchOffice
 
         public float Longitude { get; set; }
         public float Latitude { get; set; }
+
+        public IEnumerable<CinemaHallLookupDTO> CinemaHallsList { get; set; } = new List<CinemaHallLookupDTO>();
 
     }
 }

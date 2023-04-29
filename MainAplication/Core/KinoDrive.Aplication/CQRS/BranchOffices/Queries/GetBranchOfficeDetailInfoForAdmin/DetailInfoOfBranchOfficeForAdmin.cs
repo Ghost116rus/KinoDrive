@@ -1,13 +1,15 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using KinoDrive.Aplication.Common.Mappings;
+using KinoDrive.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KinoDrive.Aplication.CQRS.BranchOffices.Commands.UpdateBranchOffice
+namespace KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficeDetailInfoForAdmin
 {
-    public class UpdateBranchOfficeCommand : IRequest
+    public class DetailInfoOfBranchOfficeForAdmin : IMapWith<BranchOffice>
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -24,8 +26,11 @@ namespace KinoDrive.Aplication.CQRS.BranchOffices.Commands.UpdateBranchOffice
         public float Longitude { get; set; }
         public float Latitude { get; set; }
 
-        public bool IsChangedCinemaHalls { get; set; }
+        public IEnumerable<CinemaHallLookupDTO> CinemaHallsList { get; set; }
 
-        public IList<CinemaHallLookupDTOForUpdate> CinemaHallsList { get; set; } = new List<CinemaHallLookupDTOForUpdate>();
+        public void Mapping(Profile profile)
+        {
+            profile.CreateMap<BranchOffice, DetailInfoOfBranchOfficeForAdmin>();
+        }
     }
 }

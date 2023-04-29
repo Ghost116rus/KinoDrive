@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using KinoDrive.Aplication.CQRS.BranchOffices.Commands.CreateBranchOffice;
+using KinoDrive.Aplication.CQRS.BranchOffices.Commands.UpdateBranchOffice;
 using KinoDrive.Aplication.CQRS.BranchOffices.Queries;
 using KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchDetails;
+using KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficeDetailInfoForAdmin;
 using KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficeShedule;
 using KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficesList;
 using KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficesListByCity;
@@ -21,16 +23,36 @@ namespace KinoDriveWebAPI.Controllers
             this.mapper = mapper;
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
-        [Authorize(Roles = "Administartor")]
-        public async Task<ActionResult<Guid>> Create([FromBody] CreateBranchOfficeDTO createDTO)
+        public async Task<ActionResult<Guid>> Create([FromBody] CreateBranchOfficeCommand command)
         {
-            var command = mapper.Map<CreateBranchOfficeCommand>(createDTO);
+
             var newBranchId = await Mediator.Send(command);
 
             return Created(newBranchId.ToString(), newBranchId);
         }
 
+        [Authorize(Roles = "Administrator")]
+        [HttpGet("{id}")]
+        public async Task<ActionResult<BranchOfficeVm>> GetDetailInfoAboutBranchForAdmin(int id)
+        {
+            var query = new GetBranchOfficeDetailInfoForAdminQuery
+            {
+                BranchOfficeId = id
+            };
+
+            var vm = await Mediator.Send(query);
+            return Ok(vm);
+        }
+
+        [Authorize(Roles = "Administrator")]
+        [HttpPut]
+        public async Task<ActionResult> UpdateBranchOffice([FromBody] UpdateBranchOfficeCommand command)
+        {
+            await Mediator.Send(command);
+            return NoContent();
+        }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<BranchOfficeVm>> GetDetailInfoAboutBranch(int id)
@@ -43,6 +65,8 @@ namespace KinoDriveWebAPI.Controllers
             var vm = await Mediator.Send(query);
             return Ok(vm);
         }
+
+
 
         [HttpGet("{id}")]
         public async Task<ActionResult<BranchOfficeVm>> GetBranchOfficeShedule(int id)
