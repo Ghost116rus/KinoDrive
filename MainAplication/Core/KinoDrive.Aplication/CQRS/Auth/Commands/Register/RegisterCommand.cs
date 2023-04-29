@@ -8,10 +8,13 @@ using System.Threading.Tasks;
 
 namespace KinoDrive.Aplication.CQRS.Auth.Commands.Register
 {
-    public record RegisterCommand(
-        string FirstName,
-        string LastName,
-        string Email,
-        string Password,
-        string NickName) : IRequest<AuthResult>;
+    public class RegisterCommand : IRequest<AuthResult>
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string? Role { get; set; }
+        public string NickName { get; set; }
+    }
 }
