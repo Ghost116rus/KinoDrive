@@ -20,9 +20,19 @@ namespace KinoDrive.Aplication.CQRS.BranchOffices.Commands.CreateBranchOffice
         {
             var branch = new BranchOffice()
             {
+                Name = request.Name,
+                Email = request.Email,
+                MobilePhone = request.MobilePhone,
+                Description = request.Description,
+
+                StartWorkTime = request.StartWorkTime,
+                EndWorkTime = request.EndWorkTime,
+
                 City = request.City,
                 Adress = request.Adress,
-                Description = request.Description
+
+                Longitude = request.Longitude,
+                Latitude = request.Latitude
             };
 
             await _context.BranchOffices.AddAsync(branch, cancellationToken);

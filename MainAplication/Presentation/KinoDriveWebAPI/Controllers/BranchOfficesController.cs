@@ -22,7 +22,7 @@ namespace KinoDriveWebAPI.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Administartor")]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateBranchOfficeDTO createDTO)
         {
             var command = mapper.Map<CreateBranchOfficeCommand>(createDTO);
