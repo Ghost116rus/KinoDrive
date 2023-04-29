@@ -7,6 +7,7 @@ using System.Text;
 
 namespace KinoDrive.Authentication
 {
+
     public class JwtTokenGenerator : IJwtTokenGenerator
     {
         public string GenerateToken(User user)
