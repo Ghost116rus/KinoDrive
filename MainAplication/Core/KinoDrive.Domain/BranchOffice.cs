@@ -18,6 +18,7 @@ namespace KinoDrive.Domain
 
 
         public IEnumerable<CinemaHall> CinemaHalls { get; set; } = new List<CinemaHall>();
+        public IEnumerable<User> Managers { get; set; } = new List<User>();
         public IEnumerable<Complaint> Complaintes { get; set; } = new List<Complaint>();
     }
     
