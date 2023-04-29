@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using KinoDrive.Aplication.CQRS.BranchOffices.Commands.CreateBranchOffice;
+using KinoDrive.Aplication.CQRS.BranchOffices.Commands.DeleteBranchOffice;
 using KinoDrive.Aplication.CQRS.BranchOffices.Commands.UpdateBranchOffice;
 using KinoDrive.Aplication.CQRS.BranchOffices.Queries;
 using KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchDetails;
@@ -50,6 +51,16 @@ namespace KinoDriveWebAPI.Controllers
         [HttpPut]
         public async Task<ActionResult> UpdateBranchOffice([FromBody] UpdateBranchOfficeCommand command)
         {
+            await Mediator.Send(command);
+            return NoContent();
+        }
+
+        [Authorize(Roles = "Administrator")]
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> UpdateBranchOffice(int id)
+        {
+            var command = new DeleteBranchOfficeCommand { BranchOfficeId = id };
+
             await Mediator.Send(command);
             return NoContent();
         }
