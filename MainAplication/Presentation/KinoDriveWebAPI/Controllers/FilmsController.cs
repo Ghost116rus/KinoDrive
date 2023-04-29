@@ -21,7 +21,6 @@ namespace KinoDriveWebAPI.Controllers
             _mapper = mapper;
         }
 
-
         [HttpGet]
         public async Task<ActionResult<ActiveFilmListVM>> GetActiveFilms()
         {

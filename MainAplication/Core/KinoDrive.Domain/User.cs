@@ -13,5 +13,7 @@ namespace KinoDrive.Domain
         public IEnumerable<Booking> Bookings { get; set; } = new List<Booking>();
         public IEnumerable<Complaint> Complaintes { get; set; } = new List<Complaint>();
         public IEnumerable<Review> Reviews { get; set; } = new List<Review>();
+
+        public string Role { get; set; }
     }
 }
