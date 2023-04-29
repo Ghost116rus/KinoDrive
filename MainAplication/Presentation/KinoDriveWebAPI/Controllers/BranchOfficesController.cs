@@ -8,6 +8,7 @@ using KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficeDetailInfoF
 using KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficeShedule;
 using KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficesList;
 using KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficesListByCity;
+using KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficesListLite;
 using KinoDriveWebAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,17 @@ namespace KinoDriveWebAPI.Controllers
         public BranchOfficesController(IMapper mapper)
         {
             this.mapper = mapper;
+        }
+
+
+        [Authorize(Roles = "Administrator, Manager")]
+        [HttpGet]
+        public async Task<ActionResult<BranchOfficeListVm>> GetOfficesListLite()
+        {
+            var query = new GetBranchOfficesListLiteQuery();
+
+            var vm = await Mediator.Send(query);
+            return Ok(vm);
         }
 
         [Authorize(Roles = "Administrator")]
