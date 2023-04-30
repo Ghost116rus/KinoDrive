@@ -5,12 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KinoDrive.Aplication.CQRS.BranchOffices.Commands.CreateBranchOffice
+namespace KinoDrive.Aplication.CQRS.BranchOffices.Commands.UpdateBranchOffice
 {
-
-
-    public class CreateBranchOfficeCommand : IRequest<int>
+    public class UpdateBranchOfficeCommand : IRequest
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string MobilePhone { get; set; }
@@ -22,12 +21,11 @@ namespace KinoDrive.Aplication.CQRS.BranchOffices.Commands.CreateBranchOffice
         public string City { get; set; }
         public string Adress { get; set; }
 
-
-
         public float Longitude { get; set; }
         public float Latitude { get; set; }
 
-        public IEnumerable<CinemaHallLookupDTO> CinemaHallsList { get; set; } = new List<CinemaHallLookupDTO>();
+        public bool IsChangedCinemaHalls { get; set; }
 
+        public IList<CinemaHallLookupDTOForUpdate> CinemaHallsList { get; set; } = new List<CinemaHallLookupDTOForUpdate>();
     }
 }

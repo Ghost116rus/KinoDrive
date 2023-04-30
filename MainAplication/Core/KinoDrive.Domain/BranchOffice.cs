@@ -13,10 +13,12 @@ namespace KinoDrive.Domain
         public float Latitude { get; set; }
         public string MobilePhone { get; set; }
         public string Email { get; set; }
-        public string WorkTime { get; set; }
+        public int StartWorkTime { get; set; }
+        public int EndWorkTime { get; set; }
 
 
         public IEnumerable<CinemaHall> CinemaHalls { get; set; } = new List<CinemaHall>();
+        public IEnumerable<User> Managers { get; set; } = new List<User>();
         public IEnumerable<Complaint> Complaintes { get; set; } = new List<Complaint>();
     }
     

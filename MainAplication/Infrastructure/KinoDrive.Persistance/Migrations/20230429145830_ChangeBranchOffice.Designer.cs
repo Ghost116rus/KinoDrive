@@ -4,6 +4,7 @@ using KinoDrive.Persistance;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KinoDrive.Persistance.Migrations
 {
     [DbContext(typeof(KinoDriveDbContext))]
-    partial class KinoDriveDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230429145830_ChangeBranchOffice")]
+    partial class ChangeBranchOffice
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -275,10 +277,6 @@ namespace KinoDrive.Persistance.Migrations
                     b.Property<int>("ReleaseYear")
                         .HasColumnType("int");
 
-                    b.Property<string>("UrlForKinopoisk")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
                     b.Property<string>("UrlForTrailer")
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
@@ -373,8 +371,8 @@ namespace KinoDrive.Persistance.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(5000)
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
 
                     b.Property<int>("Value")
                         .HasColumnType("int");
@@ -429,9 +427,6 @@ namespace KinoDrive.Persistance.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("BranchOfficeId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(150)
@@ -463,8 +458,6 @@ namespace KinoDrive.Persistance.Migrations
                         .HasColumnType("nvarchar(13)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BranchOfficeId");
 
                     b.HasIndex("Id");
 
@@ -614,22 +607,11 @@ namespace KinoDrive.Persistance.Migrations
                     b.Navigation("Film");
                 });
 
-            modelBuilder.Entity("KinoDrive.Domain.User", b =>
-                {
-                    b.HasOne("KinoDrive.Domain.BranchOffice", "WorkOffice")
-                        .WithMany("Managers")
-                        .HasForeignKey("BranchOfficeId");
-
-                    b.Navigation("WorkOffice");
-                });
-
             modelBuilder.Entity("KinoDrive.Domain.BranchOffice", b =>
                 {
                     b.Navigation("CinemaHalls");
 
                     b.Navigation("Complaintes");
-
-                    b.Navigation("Managers");
                 });
 
             modelBuilder.Entity("KinoDrive.Domain.CinemaHall", b =>

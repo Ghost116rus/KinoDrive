@@ -22,7 +22,7 @@ namespace KinoDriveWebAPI.Controllers
             return Ok(vm);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Administrator")]
         [HttpPut]
         public async Task<IActionResult> UpdateDatesForSeances()
         {

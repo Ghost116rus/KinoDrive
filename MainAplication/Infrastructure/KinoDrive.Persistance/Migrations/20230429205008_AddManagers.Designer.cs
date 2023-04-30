@@ -4,6 +4,7 @@ using KinoDrive.Persistance;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KinoDrive.Persistance.Migrations
 {
     [DbContext(typeof(KinoDriveDbContext))]
-    partial class KinoDriveDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230429205008_AddManagers")]
+    partial class AddManagers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -275,10 +277,6 @@ namespace KinoDrive.Persistance.Migrations
                     b.Property<int>("ReleaseYear")
                         .HasColumnType("int");
 
-                    b.Property<string>("UrlForKinopoisk")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
                     b.Property<string>("UrlForTrailer")
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
@@ -373,8 +371,8 @@ namespace KinoDrive.Persistance.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(5000)
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
 
                     b.Property<int>("Value")
                         .HasColumnType("int");

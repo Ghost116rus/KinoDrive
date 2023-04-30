@@ -1,10 +1,14 @@
 ﻿using AutoMapper;
 using KinoDrive.Aplication.CQRS.BranchOffices.Commands.CreateBranchOffice;
+using KinoDrive.Aplication.CQRS.BranchOffices.Commands.DeleteBranchOffice;
+using KinoDrive.Aplication.CQRS.BranchOffices.Commands.UpdateBranchOffice;
 using KinoDrive.Aplication.CQRS.BranchOffices.Queries;
 using KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchDetails;
+using KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficeDetailInfoForAdmin;
 using KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficeShedule;
 using KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficesList;
 using KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficesListByCity;
+using KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficesListLite;
 using KinoDriveWebAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,16 +25,57 @@ namespace KinoDriveWebAPI.Controllers
             this.mapper = mapper;
         }
 
-        [HttpPost]
-        [Authorize]
-        public async Task<ActionResult<Guid>> Create([FromBody] CreateBranchOfficeDTO createDTO)
+
+        [Authorize(Roles = "Administrator, Manager")]
+        [HttpGet]
+        public async Task<ActionResult<BranchOfficeListVm>> GetOfficesListLite()
         {
-            var command = mapper.Map<CreateBranchOfficeCommand>(createDTO);
+            var query = new GetBranchOfficesListLiteQuery();
+
+            var vm = await Mediator.Send(query);
+            return Ok(vm);
+        }
+
+        [Authorize(Roles = "Administrator")]
+        [HttpPost]
+        public async Task<ActionResult<Guid>> Create([FromBody] CreateBranchOfficeCommand command)
+        {
+
             var newBranchId = await Mediator.Send(command);
 
             return Created(newBranchId.ToString(), newBranchId);
         }
 
+        [Authorize(Roles = "Administrator")]
+        [HttpGet("{id}")]
+        public async Task<ActionResult<BranchOfficeVm>> GetDetailInfoAboutBranchForAdmin(int id)
+        {
+            var query = new GetBranchOfficeDetailInfoForAdminQuery
+            {
+                BranchOfficeId = id
+            };
+
+            var vm = await Mediator.Send(query);
+            return Ok(vm);
+        }
+
+        [Authorize(Roles = "Administrator")]
+        [HttpPut]
+        public async Task<ActionResult> UpdateBranchOffice([FromBody] UpdateBranchOfficeCommand command)
+        {
+            await Mediator.Send(command);
+            return NoContent();
+        }
+
+        [Authorize(Roles = "Administrator")]
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> UpdateBranchOffice(int id)
+        {
+            var command = new DeleteBranchOfficeCommand { BranchOfficeId = id };
+
+            await Mediator.Send(command);
+            return NoContent();
+        }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<BranchOfficeVm>> GetDetailInfoAboutBranch(int id)
@@ -43,6 +88,8 @@ namespace KinoDriveWebAPI.Controllers
             var vm = await Mediator.Send(query);
             return Ok(vm);
         }
+
+
 
         [HttpGet("{id}")]
         public async Task<ActionResult<BranchOfficeVm>> GetBranchOfficeShedule(int id)

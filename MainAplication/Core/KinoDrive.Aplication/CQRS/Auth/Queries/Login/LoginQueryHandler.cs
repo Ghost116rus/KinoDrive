@@ -31,7 +31,7 @@ namespace KinoDrive.Aplication.CQRS.Auth.Queries.Login
                 if (user.Password == request.Password)
                 {
                     var jwtToken = _jwtTokenGenerator.GenerateToken(user);
-                    return new AuthResult(jwtToken, true, "", new AdditionalInfo { NickName = user.NickName, Role = user.Role });
+                    return new AuthResult(jwtToken, true, "", new AdditionalInfo { NickName = user.NickName, Role = user.Role, BranchOfficeId = user.BranchOfficeId });
                 }
             }
 
