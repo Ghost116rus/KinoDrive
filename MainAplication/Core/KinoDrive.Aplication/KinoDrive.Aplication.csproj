@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="CQRS\Bookings\Queries\" />
-    <Folder Include="CQRS\Films\Commands\" />
   </ItemGroup>
 
   <ItemGroup>
