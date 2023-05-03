@@ -13,11 +13,12 @@ namespace KinoDrive.Domain
         public int AgeRestriction { get; set; }
 
         public float Rating { get; set; }
-        public float RatingOnKinopoisk { get; set; }
-        public float RatingOnImdb { get; set; }
+        public float? RatingOnKinopoisk { get; set; }
+        public float? RatingOnImdb { get; set; }
 
         public string? UrlForTrailer { get; set; }
         public string? UrlForKinopoisk { get; set; }
+        public string? UrlForPoster{ get; set; }
 
         public IEnumerable<Review>? Reviews { get; set; }
         public IEnumerable<Seance>? Seances { get; set; }

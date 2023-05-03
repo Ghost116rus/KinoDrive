@@ -9,6 +9,6 @@ namespace KinoDrive.Aplication.Interfaces
 {
     public interface IKinopoiskAPI
     {
-        Dictionary<string, float> GetRatings(string urlForFilm);
+        Dictionary<string, float?> GetRatings(string urlForFilm);
     }
 }
