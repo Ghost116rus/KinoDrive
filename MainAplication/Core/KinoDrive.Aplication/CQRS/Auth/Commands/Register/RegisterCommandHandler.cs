@@ -27,11 +27,6 @@ namespace KinoDrive.Aplication.CQRS.Auth.Commands.Register
                 return new AuthResult("", false, "Такой пользователь уже существует", null);
             }
 
-            if (request.Role is null)
-            {
-                request.Role = "User";
-            }
-
             var newUser = new User
             {
                 FirstName = request.FirstName,
@@ -39,7 +34,7 @@ namespace KinoDrive.Aplication.CQRS.Auth.Commands.Register
                 Email = request.Email,
                 Password = request.Password,
                 NickName = request.NickName,
-                Role = request.Role,
+                Role = "User"
             };
 
             _context.Users.Add(newUser);
@@ -48,7 +43,7 @@ namespace KinoDrive.Aplication.CQRS.Auth.Commands.Register
 
             var token = _jwtTokenGenerator.GenerateToken(newUser);
 
-            return new AuthResult(token, true, "", new AdditionalInfo { NickName = newUser.NickName, Role = user.Role });
+            return new AuthResult(token, true, "", new AdditionalInfo { NickName = newUser.NickName, Role = newUser.Role });
         }
     }
 }
