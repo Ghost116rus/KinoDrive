@@ -1,31 +1,35 @@
 ﻿using KinoDrive.Aplication.Common.Exceptions;
-using KinoDrive.Aplication.CQRS.Auth.Common;
 using KinoDrive.Aplication.Interfaces;
 using KinoDrive.Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace KinoDrive.Aplication.CQRS.Auth.Commands.Register
+namespace KinoDrive.Aplication.CQRS.Managers.Commands.CreateNewManager
 {
-    public class RegisterCommandHandler
-        : IRequestHandler<RegisterCommand, AuthResult>
+    public class CreateNewManagerCommandHandler
+        : IRequestHandler<CreateNewManagerCommand, int>
     {
-        private readonly IJwtTokenGenerator _jwtTokenGenerator;
         private readonly IKinoDriveDbContext _context;
 
-        public RegisterCommandHandler(IJwtTokenGenerator jwtTokenGenerator, IKinoDriveDbContext context)
+        public CreateNewManagerCommandHandler(IKinoDriveDbContext context)
         {
-            _jwtTokenGenerator = jwtTokenGenerator;
             _context = context;
         }
 
-        public async Task<AuthResult> Handle(RegisterCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(CreateNewManagerCommand request, CancellationToken cancellationToken)
         {
             var user = await _context.Users.FirstOrDefaultAsync(user => user.Email == request.Email);
 
             if (user is not null)
             {
                 throw new RegisterException();
+            }
+
+            var branchOffice = await _context.BranchOffices.FirstOrDefaultAsync(br => br.Id == request.BranchOfficeId);
+
+            if (branchOffice is null)
+            {
+                throw new NotFoundException("Данный филиал не найден", request.BranchOfficeId);
             }
 
             var newUser = new User
@@ -35,16 +39,15 @@ namespace KinoDrive.Aplication.CQRS.Auth.Commands.Register
                 Email = request.Email,
                 Password = request.Password,
                 NickName = request.NickName,
-                Role = "User"
+                Role = request.Role,
+                BranchOfficeId = request.BranchOfficeId
             };
 
             _context.Users.Add(newUser);
 
             await _context.SaveChangesAsync(cancellationToken);
 
-            var token = _jwtTokenGenerator.GenerateToken(newUser);
-
-            return new AuthResult(token, true, "", new AdditionalInfo { NickName = newUser.NickName, Role = newUser.Role });
+            return newUser.Id;
         }
     }
 }

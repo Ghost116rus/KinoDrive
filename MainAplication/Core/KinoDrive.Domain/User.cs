@@ -14,6 +14,9 @@ namespace KinoDrive.Domain
         public IEnumerable<Complaint> Complaintes { get; set; } = new List<Complaint>();
         public IEnumerable<Review> Reviews { get; set; } = new List<Review>();
 
+        public int? BranchOfficeId { get; set; }
+        public BranchOffice? WorkOffice { get; set; }
+
         public string Role { get; set; }
     }
 }

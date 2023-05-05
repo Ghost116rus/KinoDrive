@@ -10,6 +10,7 @@ namespace KinoDrive.Aplication.CQRS.Auth.Common
     {
         public string NickName { get; set; }
         public string Role { get; set; }
+        public int? BranchOfficeId{ get; set; }
     }
     public record AuthResult(string Token, bool IsSuccess, string? Description, AdditionalInfo? userInfo);
 }

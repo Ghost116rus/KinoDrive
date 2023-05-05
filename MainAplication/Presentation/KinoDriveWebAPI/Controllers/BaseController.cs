@@ -21,5 +21,10 @@ namespace KinoDriveWebAPI.Controllers
         {
             return User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         }
+
+        protected string? GetBranchOfficeId()
+        {
+            return User.FindFirst("BranchOfficeId")?.Value;
+        }
     }
 }

@@ -12,7 +12,11 @@ namespace KinoDrive.Aplication.CQRS.BranchOffices.Commands.CreateBranchOffice
         public CreateBranchOfficeCommandValidator()
         {
             RuleFor(CreateBranchOfficeCommand =>
-                CreateBranchOfficeCommand.Adress).NotEmpty().MaximumLength(255);
+                CreateBranchOfficeCommand.Adress).NotEmpty().MaximumLength(255);            
+            RuleFor(CreateBranchOfficeCommand =>
+                CreateBranchOfficeCommand.City).NotEmpty();            
+            RuleFor(CreateBranchOfficeCommand =>
+                CreateBranchOfficeCommand.Description).NotEmpty().MaximumLength(1000);
         }
     }
 }

@@ -22,6 +22,7 @@ namespace KinoDrive.Persistance.EntityTypeConfiguration
             builder.Property(film => film.AgeRestriction).HasColumnType("decimal(2,0)");
 
             builder.Property(f => f.UrlForTrailer).HasMaxLength(500);
+            builder.Property(f => f.UrlForKinopoisk).HasMaxLength(500);
         }
     }
 }
