@@ -17,8 +17,11 @@ namespace KinoDrive.Aplication.Common.AnotherAPI
 
             Dictionary<string, float>? result = null;
 
-            WebClient client = new WebClient();
-            var text = client.DownloadString(urlForFilm);
+            var text = string.Empty;
+            using (var webClient = new WebClient())
+            {
+                text = webClient.DownloadString(urlForFilm);
+            }
 
             XmlDocument xDoc = new XmlDocument();
             xDoc.LoadXml(text);
