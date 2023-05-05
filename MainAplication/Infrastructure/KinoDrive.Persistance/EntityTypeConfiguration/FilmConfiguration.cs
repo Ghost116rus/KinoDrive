@@ -23,6 +23,7 @@ namespace KinoDrive.Persistance.EntityTypeConfiguration
 
             builder.Property(f => f.UrlForTrailer).HasMaxLength(500);
             builder.Property(f => f.UrlForKinopoisk).HasMaxLength(500);
+            builder.Property(f => f.UrlForPoster).HasMaxLength(500);
         }
     }
 }

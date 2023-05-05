@@ -1,6 +1,7 @@
 ﻿using KinoDrive.Aplication.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Http.Json;
@@ -12,37 +13,56 @@ namespace KinoDrive.Aplication.Common.AnotherAPI
 {
     public class KinopoiskAPI : IKinopoiskAPI
     {
-        public Dictionary<string, float>? GetRatings(string urlForFilm)
+        private string GetFilmId(string urlForFilmOnKinopoisk)
         {
+            var arr = urlForFilmOnKinopoisk.Split('/');
 
-            Dictionary<string, float>? result = null;
+            return arr[arr.Length-2];
+        }
 
-            var text = string.Empty;
-            using (var webClient = new WebClient())
+
+        public Dictionary<string, float?>? GetRatings(string urlForFilm)
+        {
+            var filmId = GetFilmId(urlForFilm);
+
+            Dictionary<string, float?>? result = null;
+
+            try
             {
-                text = webClient.DownloadString(urlForFilm);
-            }
+                WebClient client = new WebClient();
+                var text = client.DownloadString($"https://rating.kinopoisk.ru/{filmId}.xml.");
 
-            XmlDocument xDoc = new XmlDocument();
-            xDoc.LoadXml(text);
+                XmlDocument xDoc = new XmlDocument();
+                xDoc.LoadXml(text);
 
-            // получим корневой элемент
-            XmlElement? xRoot = xDoc.DocumentElement;
-            if (xRoot != null)
-            {
-                result = new Dictionary<string, float>();
-
-                // обход всех узлов в корневом элементе
-                foreach (XmlElement xnode in xRoot)
+                // получим корневой элемент
+                XmlElement? xRoot = xDoc.DocumentElement;
+                if (xRoot != null)
                 {
-                    // Стоит отметить, что мы также можем получить и количество голосов
-                    XmlNode? attr = xnode.Attributes.GetNamedItem("num_vote");
-                    Console.WriteLine($"{attr.Name}" + attr?.Value);
+                    result = new Dictionary<string, float?>();
 
-                    var rating = float.Parse(xnode.InnerText);
+                    // обход всех узлов в корневом элементе
+                    foreach (XmlElement xnode in xRoot)
+                    {
+                        // Стоит отметить, что мы также можем получить и количество голосов
+                        //XmlNode? attr = xnode.Attributes.GetNamedItem("num_vote");
+                        //Console.WriteLine($"{attr.Name}" + attr?.Value);
 
-                    result.Add(xnode.Name, rating);
+                        var number = xnode.InnerText;
+                        float? rating = float.Parse(number, CultureInfo.InvariantCulture.NumberFormat);
+
+                        if (rating == 0)
+                        {
+                            rating = null;
+                        }
+
+                        result.Add(xnode.Name, rating);
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
 
             return result;
