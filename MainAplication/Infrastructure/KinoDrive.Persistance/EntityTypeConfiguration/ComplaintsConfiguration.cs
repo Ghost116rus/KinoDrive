@@ -22,6 +22,7 @@ namespace KinoDrive.Persistance.EntityTypeConfiguration
                 .HasForeignKey(f => f.UserId);
 
             builder.Property(c => c.Description).HasMaxLength(2000);
+            builder.Property(c => c.Answer).HasMaxLength(2000);
         }
     }
 }

@@ -9,6 +9,6 @@ namespace KinoDrive.Aplication.CQRS.FilmsStaff.Commands.FilmDirectorCRUD.CreateF
 {
     public class CreateFilmDirectorCommand : IRequest<int>
     {
-
+        public string Name { get; set; }
     }
 }

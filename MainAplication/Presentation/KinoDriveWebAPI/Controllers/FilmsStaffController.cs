@@ -2,6 +2,9 @@
 using KinoDrive.Aplication.CQRS.FilmsStaff.Commands.ActorCRUD.CreateFilmsActor;
 using KinoDrive.Aplication.CQRS.FilmsStaff.Commands.ActorCRUD.DeleteFilmActor;
 using KinoDrive.Aplication.CQRS.FilmsStaff.Commands.ActorCRUD.UpdateFilmActor;
+using KinoDrive.Aplication.CQRS.FilmsStaff.Commands.FilmDirectorCRUD.CreateFilmDirector;
+using KinoDrive.Aplication.CQRS.FilmsStaff.Commands.FilmDirectorCRUD.DeleteFilmDirector;
+using KinoDrive.Aplication.CQRS.FilmsStaff.Commands.FilmDirectorCRUD.UpdateFilmDirector;
 using KinoDrive.Aplication.CQRS.FilmsStaff.Queries.GetActorList;
 using KinoDrive.Aplication.CQRS.FilmsStaff.Queries.GetFilmDirectorsList;
 using Microsoft.AspNetCore.Authorization;
@@ -61,6 +64,31 @@ namespace KinoDriveWebAPI.Controllers
             var vm = await Mediator.Send(query);
 
             return Ok(vm);
+        }
+
+        [HttpPost("{Name}")]
+        public async Task<ActionResult<int>> CreateNewFilmDirector(string Name)
+        {
+            var command = new CreateFilmDirectorCommand() { Name = Name };
+
+            var result = await Mediator.Send(command);
+
+            return Created($"{result}", result);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateFilmDirector([FromBody] UpdateFilmDirectorCommand command)
+        {
+            await Mediator.Send(command);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteFilmDirector(int id)
+        {
+            var command = new DeleteFilmDirectorCommand() { Id = id };
+            await Mediator.Send(command);
+            return NoContent();
         }
 
     }
