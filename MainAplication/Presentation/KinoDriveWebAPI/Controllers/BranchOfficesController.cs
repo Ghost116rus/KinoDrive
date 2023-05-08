@@ -69,7 +69,7 @@ namespace KinoDriveWebAPI.Controllers
 
         [Authorize(Roles = "Administrator")]
         [HttpDelete("{id}")]
-        public async Task<ActionResult> UpdateBranchOffice(int id)
+        public async Task<ActionResult> DeleteBranchOffice(int id)
         {
             var command = new DeleteBranchOfficeCommand { BranchOfficeId = id };
 
