@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KinoDrive.Aplication.CQRS.FilmsStaff.Commands.CreateFilmsActor
+namespace KinoDrive.Aplication.CQRS.FilmsStaff.Commands.ActorCRUD.CreateFilmsActor
 {
     public class FilmsActorCreateCommand : IRequest<int>
     {

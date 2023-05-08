@@ -1,7 +1,7 @@
 ﻿using KinoDrive.Aplication.CQRS.Films.Commands.CreateFilm;
-using KinoDrive.Aplication.CQRS.FilmsStaff.Commands.CreateFilmsActor;
-using KinoDrive.Aplication.CQRS.FilmsStaff.Commands.DeleteFilmActor;
-using KinoDrive.Aplication.CQRS.FilmsStaff.Commands.UpdateFilmActor;
+using KinoDrive.Aplication.CQRS.FilmsStaff.Commands.ActorCRUD.CreateFilmsActor;
+using KinoDrive.Aplication.CQRS.FilmsStaff.Commands.ActorCRUD.DeleteFilmActor;
+using KinoDrive.Aplication.CQRS.FilmsStaff.Commands.ActorCRUD.UpdateFilmActor;
 using KinoDrive.Aplication.CQRS.FilmsStaff.Queries.GetActorList;
 using KinoDrive.Aplication.CQRS.FilmsStaff.Queries.GetFilmDirectorsList;
 using Microsoft.AspNetCore.Authorization;

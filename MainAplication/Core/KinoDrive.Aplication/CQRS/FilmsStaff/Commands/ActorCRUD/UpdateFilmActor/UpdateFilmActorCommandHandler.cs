@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KinoDrive.Aplication.CQRS.FilmsStaff.Commands.UpdateFilmActor
+namespace KinoDrive.Aplication.CQRS.FilmsStaff.Commands.ActorCRUD.UpdateFilmActor
 {
     public class UpdateFilmActorCommandHandler : IRequestHandler<UpdateFilmActorCommand>
     {

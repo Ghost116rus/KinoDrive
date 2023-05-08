@@ -3,7 +3,7 @@ using KinoDrive.Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace KinoDrive.Aplication.CQRS.FilmsStaff.Commands.CreateFilmsActor
+namespace KinoDrive.Aplication.CQRS.FilmsStaff.Commands.ActorCRUD.CreateFilmsActor
 {
     public class FilmsActorCreateCommandHandler : IRequestHandler<FilmsActorCreateCommand, int>
     {
