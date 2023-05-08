@@ -53,7 +53,7 @@ namespace KinoDrive.Aplication.Common.AnotherAPI
 
                         if (rating == 0)
                         {
-                            rating = null;
+                            continue;
                         }
 
                         result.Add(xnode.Name, rating);

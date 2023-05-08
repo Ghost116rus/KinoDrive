@@ -44,18 +44,25 @@ namespace KinoDrive.Aplication.CQRS.Films.Commands.CreateFilm
             {
                 var ratings = _kinopoiskAPI.GetRatings(request.UrlForKinopoisk);
 
-                if (ratings.ContainsKey("kp_rating"))
-                { film.RatingOnKinopoisk = ratings["kp_rating"]; }
+                if (ratings is not null)
+                {
+                    if (ratings.ContainsKey("kp_rating"))
+                    { film.RatingOnKinopoisk = ratings["kp_rating"]; }
 
-                if (ratings.ContainsKey("imdb_rating"))
-                { film.RatingOnImdb = ratings["imdb_rating"]; }
+                    if (ratings.ContainsKey("imdb_rating"))
+                    { film.RatingOnImdb = ratings["imdb_rating"]; }
+                }
             }
 
             var genres = new List<Genre>();
             foreach (var genreId in request.Genres)
             {
                 var genre = await _context.Genres.FirstOrDefaultAsync(x => x.Id == genreId);
-                genres.Add(genre);
+                if (genre is not null)
+                {
+                    genres.Add(genre);
+                }
+
             }
             film.Genres = genres;
 
@@ -67,7 +74,10 @@ namespace KinoDrive.Aplication.CQRS.Films.Commands.CreateFilm
                 foreach (var actorId in request.ActorsId)
                 {
                     var actor = await _context.Actors.FirstOrDefaultAsync(x => x.Id == actorId);
-                    actors.Add(actor);
+                    if (actor is not null)
+                    {
+                        actors.Add(actor);
+                    }
                 }
                 film.Actors = actors;
             }
@@ -78,7 +88,10 @@ namespace KinoDrive.Aplication.CQRS.Films.Commands.CreateFilm
                 foreach (var filmDirectorId in request.FilmDirectorsId)
                 {
                     var filmDirector = await _context.FilmDirectors.FirstOrDefaultAsync(x => x.Id == filmDirectorId);
-                    filmDirectors.Add(filmDirector);
+                    if (filmDirector is not null)
+                    {
+                        filmDirectors.Add(filmDirector);
+                    }
                 }
                 film.FilmDirectors = filmDirectors;
             }
