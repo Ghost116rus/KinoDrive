@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using KinoDrive.Aplication.CQRS.Films.Commands.CreateFilm;
 using KinoDrive.Aplication.CQRS.Films.Commands.UpdateFilm;
+using KinoDrive.Aplication.CQRS.Films.Queries.GetFilmById;
 using KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail;
 using KinoDrive.Aplication.CQRS.Films.Queries.GetFilmList;
 using Microsoft.AspNetCore.Authorization;
@@ -38,6 +39,16 @@ namespace KinoDriveWebAPI.Controllers
         public async Task<ActionResult<FilmDetailVM>> GetFilmByIdAndCity(int id, string city)
         {
             var query = new GetFilmDetailQuery() { Id = id, City = city };
+            var vm = await Mediator.Send(query);
+
+            return Ok(vm);
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<ActionResult<FilmDetailVM>> GetFilmById(int id)
+        {
+            var query = new GetFilmByIdQuery() { Id = id};
             var vm = await Mediator.Send(query);
 
             return Ok(vm);
