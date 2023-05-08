@@ -1,4 +1,5 @@
 ﻿using KinoDrive.Aplication.Common.AnotherAPI;
+using KinoDrive.Aplication.Common.Exceptions;
 using KinoDrive.Aplication.Interfaces;
 using KinoDrive.Domain;
 using MediatR;
@@ -35,6 +36,7 @@ namespace KinoDrive.Aplication.CQRS.Films.Commands.CreateFilm
                 ReleaseYear = request.ReleaseYear,
                 Length = request.Length,
                 isActive = true,
+                Rating = 0,
                 AgeRestriction = request.AgeRestriction,
                 UrlForTrailer = request.UrlForTrailer,
                 UrlForKinopoisk = request.UrlForKinopoisk
@@ -54,6 +56,11 @@ namespace KinoDrive.Aplication.CQRS.Films.Commands.CreateFilm
                 }
             }
 
+            if (request.Genres is null)
+            {
+                throw new BadDataException("Нельзя создать фильм без жанров");
+            }
+
             var genres = new List<Genre>();
             foreach (var genreId in request.Genres)
             {
@@ -65,7 +72,6 @@ namespace KinoDrive.Aplication.CQRS.Films.Commands.CreateFilm
 
             }
             film.Genres = genres;
-
 
 
             if (request.ActorsId is not null)

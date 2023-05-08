@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using KinoDrive.Aplication.CQRS.Films.Commands.CreateFilm;
+using KinoDrive.Aplication.CQRS.Films.Commands.UpdateFilm;
 using KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail;
 using KinoDrive.Aplication.CQRS.Films.Queries.GetFilmList;
 using Microsoft.AspNetCore.Authorization;
@@ -49,6 +50,15 @@ namespace KinoDriveWebAPI.Controllers
             var result = await Mediator.Send(command);
 
             return Created($"{result}", result);
+        }
+
+
+        [HttpPut]
+        public async Task<ActionResult<Guid>> UpdateFilm([FromBody] UpdateFilmCommand command)
+        {
+            await Mediator.Send(command);
+
+            return NoContent();
         }
 
     }
