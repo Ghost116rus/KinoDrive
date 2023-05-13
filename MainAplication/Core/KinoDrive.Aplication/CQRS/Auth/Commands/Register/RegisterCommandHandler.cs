@@ -44,7 +44,7 @@ namespace KinoDrive.Aplication.CQRS.Auth.Commands.Register
 
             var token = _jwtTokenGenerator.GenerateToken(newUser);
 
-            return new AuthResult(token, true, "", new AdditionalInfo { NickName = newUser.NickName, Role = user.Role });
+            return new AuthResult(token, true, "", new AdditionalInfo { NickName = newUser.NickName, Role = newUser.Role });
         }
     }
 }
