@@ -11,6 +11,7 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries
 {
     public class GenreVm : IMapWith<Genre>
     {
+        public int Id { get; set; }
         public string Description { get; set; }
 
         public void Mapping(Profile profile) => profile.CreateMap<Genre, GenreVm>();

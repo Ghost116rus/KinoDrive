@@ -26,7 +26,7 @@ namespace KinoDriveWebAPI.Controllers
         }
 
 
-        [Authorize(Roles = "Administrator, Manager")]
+
         [HttpGet]
         public async Task<ActionResult<BranchOfficeListVm>> GetOfficesListLite()
         {
@@ -46,7 +46,7 @@ namespace KinoDriveWebAPI.Controllers
             return Created(newBranchId.ToString(), newBranchId);
         }
 
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator, Manager")]
         [HttpGet("{id}")]
         public async Task<ActionResult<BranchOfficeVm>> GetDetailInfoAboutBranchForAdmin(int id)
         {
@@ -69,7 +69,7 @@ namespace KinoDriveWebAPI.Controllers
 
         [Authorize(Roles = "Administrator")]
         [HttpDelete("{id}")]
-        public async Task<ActionResult> UpdateBranchOffice(int id)
+        public async Task<ActionResult> DeleteBranchOffice(int id)
         {
             var command = new DeleteBranchOfficeCommand { BranchOfficeId = id };
 
