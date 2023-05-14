@@ -10,6 +10,7 @@ namespace MediaCore.Domain
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string? UrlForPoster { get; set; }
         public IEnumerable<FilmImage>? Images { get; set; }
     }
 }

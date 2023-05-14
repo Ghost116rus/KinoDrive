@@ -56,6 +56,7 @@ namespace MediaCore.Aplication.Services
             var film = await _context.Films.FirstOrDefaultAsync(x => x.Id == filmId);
 
             if (film == null) return -1;
+            if (file == null) return -2;
 
             var filePath = _filePath + MakeDirPath(film.Name);
 
@@ -70,7 +71,12 @@ namespace MediaCore.Aplication.Services
             string fullPath = $"{filePath}/{name}";
 
             var inetAddress = fullPath.Substring(6);
-            await AddNewRecordFilmImage(filmId, name, inetAddress);
+
+            // старый метод
+            //await AddNewRecordFilmImage(filmId, name, inetAddress);
+
+            // новый метод
+            film.UrlForPoster = inetAddress;
 
             // сохраняем файл в папку 
             using (var fileStream = new FileStream(fullPath, FileMode.Create))
@@ -80,7 +86,7 @@ namespace MediaCore.Aplication.Services
 
             await _context.SaveChangesAsync(cancellationToken);
 
-            return 4;
+            return 204;
 
         }
 
@@ -90,6 +96,11 @@ namespace MediaCore.Aplication.Services
             var film = await _context.Films.FirstOrDefaultAsync(x => x.Id == filmId);
 
             if (film == null) return -1;
+
+            if (files.Count == 0)
+            {
+                return -2;
+            }
 
             var filePath = _filePath + MakeDirPath(film.Name);
 
@@ -116,7 +127,7 @@ namespace MediaCore.Aplication.Services
             await _context.SaveChangesAsync(cancellationToken);
 
 
-            return 5;
+            return 205;
         }
     }
 }

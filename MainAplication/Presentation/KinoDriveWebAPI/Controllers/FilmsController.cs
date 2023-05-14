@@ -2,6 +2,7 @@
 using KinoDrive.Aplication.CQRS.Films.Commands.ChangeActivity;
 using KinoDrive.Aplication.CQRS.Films.Commands.CreateFilm;
 using KinoDrive.Aplication.CQRS.Films.Commands.UpdateFilm;
+using KinoDrive.Aplication.CQRS.Films.Queries.GetAllFilmList;
 using KinoDrive.Aplication.CQRS.Films.Queries.GetFilmById;
 using KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail;
 using KinoDrive.Aplication.CQRS.Films.Queries.GetFilmList;
@@ -81,6 +82,16 @@ namespace KinoDriveWebAPI.Controllers
             await Mediator.Send(command);
 
             return NoContent();
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<ActionResult<FilmDetailInfo>> GetAllFilmsList()
+        {
+            var query = new GetAllFilmListQuery();
+            var vm = await Mediator.Send(query);
+
+            return Ok(vm);
         }
 
     }
