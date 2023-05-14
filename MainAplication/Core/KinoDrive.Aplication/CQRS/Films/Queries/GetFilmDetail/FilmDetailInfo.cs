@@ -21,6 +21,7 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
         public float Rating { get; set; }
         public float? RatingOnKinopoisk { get; set; }
         public float? RatingOnImdb { get; set; }
+        public bool isActive { get; set; }
 
         public string? UrlForTrailer { get; set; }
         public string? UrlForKinopoisk { get; set; }

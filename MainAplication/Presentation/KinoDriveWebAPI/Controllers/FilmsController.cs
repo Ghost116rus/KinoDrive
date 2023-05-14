@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using KinoDrive.Aplication.CQRS.Films.Commands.ChangeActivity;
 using KinoDrive.Aplication.CQRS.Films.Commands.CreateFilm;
 using KinoDrive.Aplication.CQRS.Films.Commands.UpdateFilm;
 using KinoDrive.Aplication.CQRS.Films.Queries.GetFilmById;
@@ -67,6 +68,16 @@ namespace KinoDriveWebAPI.Controllers
         [HttpPut]
         public async Task<ActionResult<Guid>> UpdateFilm([FromBody] UpdateFilmCommand command)
         {
+            await Mediator.Send(command);
+
+            return NoContent();
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<Guid>> ChangeActivity(int filmId, bool isActive)
+        {
+            var command = new ChangeActivityCommand() { FilmId = filmId, IsActive = isActive };
+
             await Mediator.Send(command);
 
             return NoContent();
