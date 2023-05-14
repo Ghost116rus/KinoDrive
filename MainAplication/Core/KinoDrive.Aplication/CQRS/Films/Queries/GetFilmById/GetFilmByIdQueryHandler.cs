@@ -34,18 +34,6 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmById
             if (filmDetail == null)
                 throw new NotFoundException("FilmDetailInfo", request.Id);
 
-            var images = await _context.FilmImages
-                .Where(i => i.FilmId == filmDetail.Id).ToListAsync();
-
-            if (images is not null)
-            {
-                foreach (var img in images)
-                {
-                    img.UrlForFile = LocalHostUrlForMedia.Url + img.UrlForFile;
-                    filmDetail.ImagesUrls.Add(img.UrlForFile);
-                }
-            }
-
             return filmDetail;
         }
     }
