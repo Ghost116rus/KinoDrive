@@ -13,7 +13,7 @@ namespace KinoDrive.Domain
 
         public int UserId { get; set; }
         public User User { get; set; }
-        public int BranchOfficeId { get; set; }
-        public BranchOffice BranchOffice { get; set; }
+        public int? BranchOfficeId { get; set; }
+        public BranchOffice? BranchOffice { get; set; }
     }
 }
