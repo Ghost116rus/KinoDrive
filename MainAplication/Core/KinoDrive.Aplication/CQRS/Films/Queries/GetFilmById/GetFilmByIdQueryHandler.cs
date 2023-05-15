@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using KinoDrive.Aplication.Common.Exceptions;
+using KinoDrive.Aplication.Common.LocalHostUrls;
 using KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail;
 using KinoDrive.Aplication.Interfaces;
 using MediatR;

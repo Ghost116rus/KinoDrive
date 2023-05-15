@@ -8,9 +8,12 @@ namespace KinoDrive.Domain
         public string Description { get; set; }
         public string? Answer { get; set; }
 
+        public DateTime CreateDate { get; set; }
+        public DateTime? AnswerDate { get; set; }
+
         public int UserId { get; set; }
         public User User { get; set; }
-        public int BranchOfficeId { get; set; }
-        public BranchOffice BranchOffice { get; set; }
+        public int? BranchOfficeId { get; set; }
+        public BranchOffice? BranchOffice { get; set; }
     }
 }

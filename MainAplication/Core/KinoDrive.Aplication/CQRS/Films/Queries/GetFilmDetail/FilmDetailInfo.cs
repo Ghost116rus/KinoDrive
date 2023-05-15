@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using KinoDrive.Aplication.Common.LocalHostUrls;
 using KinoDrive.Aplication.Common.Mappings;
 using KinoDrive.Domain;
 using System;
@@ -21,6 +22,7 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
         public float Rating { get; set; }
         public float? RatingOnKinopoisk { get; set; }
         public float? RatingOnImdb { get; set; }
+        public bool isActive { get; set; }
 
         public string? UrlForTrailer { get; set; }
         public string? UrlForKinopoisk { get; set; }
@@ -34,7 +36,9 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Film, FilmDetailInfo>();
+            profile.CreateMap<Film, FilmDetailInfo>()
+                .ForMember(x => x.Poster,
+                opt => opt.MapFrom(p => p.UrlForPoster == null ? null : LocalHostUrlForMedia.Url + p.UrlForPoster));
         }
     }
 }

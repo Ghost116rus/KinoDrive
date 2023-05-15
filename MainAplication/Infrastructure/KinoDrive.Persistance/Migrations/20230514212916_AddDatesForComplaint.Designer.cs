@@ -4,6 +4,7 @@ using KinoDrive.Persistance;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KinoDrive.Persistance.Migrations
 {
     [DbContext(typeof(KinoDriveDbContext))]
-    partial class KinoDriveDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230514212916_AddDatesForComplaint")]
+    partial class AddDatesForComplaint
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -224,7 +226,7 @@ namespace KinoDrive.Persistance.Migrations
                     b.Property<DateTime?>("AnswerDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("BranchOfficeId")
+                    b.Property<int>("BranchOfficeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreateDate")
@@ -560,7 +562,9 @@ namespace KinoDrive.Persistance.Migrations
                 {
                     b.HasOne("KinoDrive.Domain.BranchOffice", "BranchOffice")
                         .WithMany("Complaintes")
-                        .HasForeignKey("BranchOfficeId");
+                        .HasForeignKey("BranchOfficeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("KinoDrive.Domain.User", "User")
                         .WithMany("Complaintes")

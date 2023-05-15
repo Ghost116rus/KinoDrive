@@ -41,15 +41,7 @@ namespace KinoDrive.Aplication.CQRS.Films.Queries.GetFilmDetail
                 foreach (var img in images)
                 {
                     img.UrlForFile = LocalHostUrlForMedia.Url + img.UrlForFile;
-
-                    if (img.UrlForFile.Contains("poster"))
-                    {
-                        filmDetail.Poster = img.UrlForFile;
-                    }
-                    else
-                    {
-                        filmDetail.ImagesUrls.Add(img.UrlForFile);
-                    }
+                    filmDetail.ImagesUrls.Add(img.UrlForFile);
                 }
             }
 
