@@ -17,10 +17,16 @@ namespace KinoDrive.Aplication.CQRS.Complaints.Queries.GetAllComplaintsByUser
         private readonly IKinoDriveDbContext _context;
         private readonly IMapper _mapper;
 
+        public GetAllComplaintsByUserQueryHandler(IKinoDriveDbContext context, IMapper mapper)
+        {
+            _context = context;
+            _mapper = mapper;
+        }
+
         public async Task<List<ComplaintVM>> Handle(GetAllComplaintsByUserQuery request, CancellationToken cancellationToken)
         {
             var complaintList = await _context.Complaints.Where(x => x.UserId == request.UserId)
-                .OrderBy(x => x.CreateDate)
+                .OrderByDescending(x => x.CreateDate)
                 .ProjectTo<ComplaintVM>(_mapper.ConfigurationProvider).ToListAsync();
 
             return complaintList;

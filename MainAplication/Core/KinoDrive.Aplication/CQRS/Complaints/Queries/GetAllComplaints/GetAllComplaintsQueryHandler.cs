@@ -26,7 +26,7 @@ namespace KinoDrive.Aplication.CQRS.Complaints.Queries.GetAllComplaints
         public async Task<List<ComplaintVM>> Handle(GetAllComplaintsQuery request, CancellationToken cancellationToken)
         {
             var complaintsList = await _context.Complaints
-                .OrderBy(x => x.CreateDate)
+                .OrderByDescending(x => x.CreateDate)
                 .ProjectTo<ComplaintVM>(_mapper.ConfigurationProvider).ToListAsync();
 
             return complaintsList;

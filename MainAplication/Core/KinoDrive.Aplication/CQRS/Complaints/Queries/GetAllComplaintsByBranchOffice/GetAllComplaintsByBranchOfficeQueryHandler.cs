@@ -39,7 +39,7 @@ namespace KinoDrive.Aplication.CQRS.Complaints.Queries.GetAllComplaintsByBranchO
             }
 
             var complaintsList = await _context.Complaints.Where(x => x.BranchOfficeId == manager.BranchOfficeId)
-                .OrderBy(x => x.CreateDate)
+                .OrderByDescending(x => x.CreateDate)
                 .ProjectTo<ComplaintVM>(_mapper.ConfigurationProvider).ToListAsync();
 
             return complaintsList;

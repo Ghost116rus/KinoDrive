@@ -31,7 +31,7 @@ namespace KinoDrive.Aplication.CQRS.Complaints.Queries.GetAllComplaintsWithAnswe
                 .Include(x => x.User)
                 .Include(x => x.BranchOffice)
                 .Where(x => x.Answer != null)
-                .OrderBy(x => x.CreateDate)
+                .OrderByDescending(x => x.CreateDate)
                 .ProjectTo<ComplaintVM>(_mapper.ConfigurationProvider)
                 .ToListAsync();
 
