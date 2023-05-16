@@ -25,6 +25,10 @@ namespace KinoDrive.Aplication.CQRS.Operator.Commands.UpdateOperator
 
             if (operatoR == null) throw new NotFoundException("Оператор не найден", request.Id);
 
+            operatoR.FirstName = request.FirstName;
+            operatoR.LastName = request.LastName;
+            operatoR.NickName = request.NickName;
+
             await _context.SaveChangesAsync(cancellationToken);
         }
     }
