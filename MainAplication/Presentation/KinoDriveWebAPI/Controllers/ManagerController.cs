@@ -47,7 +47,7 @@ namespace KinoDriveWebAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<Guid>> Update([FromBody] UpdateManagerCommand command)
+        public async Task<IActionResult> Update([FromBody] UpdateManagerCommand command)
         {
             await Mediator.Send(command);
 
@@ -55,7 +55,7 @@ namespace KinoDriveWebAPI.Controllers
         }
 
         [HttpDelete("managerId")]
-        public async Task<ActionResult<ManagerVm>> DeleteManagerById(int managerId)
+        public async Task<IActionResult> DeleteManagerById(int managerId)
         {
             var command = new DeleteManagerCommand { Id = managerId };
 
