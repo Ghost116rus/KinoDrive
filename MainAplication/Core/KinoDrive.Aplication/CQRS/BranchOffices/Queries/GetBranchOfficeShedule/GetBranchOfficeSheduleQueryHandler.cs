@@ -39,16 +39,6 @@ namespace KinoDrive.Aplication.CQRS.BranchOffices.Queries.GetBranchOfficeShedule
                 throw new NotFoundException("BranchOfficeShedule", request.BranchOfficeId);
             }
 
-            foreach (var seance in seances)
-            {
-                var poster = await kinoDriveDbContext.FilmImages
-                    .FirstOrDefaultAsync(x => x.FilmId == seance.Film.Id && x.UrlForFile.Contains("poster"));
-                if (poster is not null)
-                {
-                    seance.Film.PosterURL = LocalHostUrlForMedia.Url + poster.UrlForFile;
-                }
-            }
-
             var sessionShedule = new List<DatesForSheduleVM>();
             var shedule = new Dictionary<string, Dictionary<int, IList<SeanceForBranchOfficeSheduleVm>>>();
 
