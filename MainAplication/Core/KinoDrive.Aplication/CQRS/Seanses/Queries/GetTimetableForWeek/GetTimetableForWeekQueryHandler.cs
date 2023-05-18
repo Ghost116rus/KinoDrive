@@ -65,6 +65,7 @@ namespace KinoDrive.Aplication.CQRS.Seanses.Queries.GetTimetableForWeek
                         .OrderBy(s => s.SeanceStartTime)
                         .Include(s => s.Film)
                         .ToListAsync();
+                    
                     foreach (var seance in seances)
                     {
                         var seanceVM = new SeanceVM();
@@ -72,6 +73,35 @@ namespace KinoDrive.Aplication.CQRS.Seanses.Queries.GetTimetableForWeek
                         seanceVM.Cost = seance.BasicCost;
                         seanceVM.Film = mapper.Map<FilmVM>(seance.Film);
                         hallVm.Seances.Add(seanceVM);
+                    }
+
+                    var currentBreakId = -1;
+                    var insertingIndexAdding = 0;
+                    
+                    for (int j = 0; j < seances.Count - 1; j++)
+                    {
+                        var breakTime = seances[j + 1].SeanceStartTime
+                            .Subtract(seances[j].SeanceStartTime.AddMinutes(seances[j].Film.Length)).TotalMinutes; 
+                        
+                        if (breakTime < 5.2)
+                        {
+                            hallVm.Seances.Insert(j + 1 + insertingIndexAdding, new SeanceVM()
+                                {
+                                    Id = currentBreakId,
+                                    Cost = -1,
+                                    Film = new FilmVM()
+                                    {
+                                        Id = 0, 
+                                        Duration = Math.Abs((int)Math.Ceiling(breakTime / 5) * 5),
+                                        Name = "Перерыв"
+                                    }
+                                }
+                            );
+
+                            currentBreakId--;
+                            insertingIndexAdding++;
+
+                        }
                     }
 
                     day.Halls.Add(hallVm);

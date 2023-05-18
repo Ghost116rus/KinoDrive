@@ -21,7 +21,7 @@ namespace KinoDrive.Aplication.CQRS.Seanses.Queries.GetTimetableForWeek
         {
             profile.CreateMap<Film, FilmVM>()
                 .ForMember(f => f.Duration,
-                    opt => opt.MapFrom(f => f.Length));
+                    opt => opt.MapFrom(f => (int)Math.Ceiling((double)(f.Length) / 5) * 5));
         }
 
     }
