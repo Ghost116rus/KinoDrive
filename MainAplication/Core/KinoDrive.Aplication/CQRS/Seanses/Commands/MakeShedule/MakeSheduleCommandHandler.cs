@@ -46,11 +46,11 @@ namespace KinoDrive.Aplication.CQRS.Seanses.Commands.CreateNewShedule
                         break;
                     }
 
-                    if (seance.Film.Id != -1)
+                    if (seance.Film.Id != 0)
                     {
                         Seance seanceEntity;
 
-                        if (seance.Id == -1)
+                        if (seance.Id < 0)
                         {
                             seanceEntity = new Seance()
                             {
