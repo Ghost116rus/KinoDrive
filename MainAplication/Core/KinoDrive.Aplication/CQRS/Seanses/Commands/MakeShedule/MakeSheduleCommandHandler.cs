@@ -55,7 +55,7 @@ namespace KinoDrive.Aplication.CQRS.Seanses.Commands.CreateNewShedule
                             seanceEntity = new Seance()
                             {
                                 FilmId = seance.Film.Id,
-                                Type = seance.Type,
+                                Type = "2d",
                                 SeanceStartTime = currentTime,
                                 BasicCost = seance.cost,
                                 CinemaHallId = cinemaHall.Id

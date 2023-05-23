@@ -16,7 +16,6 @@ namespace KinoDrive.Aplication.CQRS.Seanses.Commands.CreateNewShedule
     {
         public int Id { get; set; }
         public int cost { get; set; }
-        public string Type { get; set; }
         public FilmDTO Film { get; set; }
     }
 
