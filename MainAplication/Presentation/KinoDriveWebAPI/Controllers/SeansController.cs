@@ -1,5 +1,6 @@
 ﻿using KinoDrive.Aplication.CQRS.Films.Commands.CreateFilm;
 using KinoDrive.Aplication.CQRS.Seanses.Commands.CreateNewShedule;
+using KinoDrive.Aplication.CQRS.Seanses.Queries.GetActiveFilmListForSeance;
 using KinoDrive.Aplication.CQRS.Seanses.Queries.GetSeanceDetailInfo;
 using KinoDrive.Aplication.CQRS.Seanses.Queries.GetTimetableForWeek;
 using KinoDrive.Aplication.CQRS.Seanses.Queries.GetTimeTableHard;
@@ -28,6 +29,15 @@ namespace KinoDriveWebAPI.Controllers
         public async Task<ActionResult<TimetableVM>> GetTimeTableForWeek(int branchOffcieId)
         {
             var query = new GetTimetableForWeekQuery { BranchOfficeId = branchOffcieId };
+            var vm = await Mediator.Send(query);
+
+            return Ok(vm);
+        }
+        
+        [HttpGet]
+        public async Task<ActionResult<ActiveFilmLoockupDTO>> GetActiveFilmsForShedule()
+        {
+            var query = new GetActiveFilmListForSeanceQuery();
             var vm = await Mediator.Send(query);
 
             return Ok(vm);

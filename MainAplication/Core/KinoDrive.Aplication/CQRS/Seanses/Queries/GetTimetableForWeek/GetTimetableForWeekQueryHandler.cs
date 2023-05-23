@@ -110,6 +110,8 @@ namespace KinoDrive.Aplication.CQRS.Seanses.Queries.GetTimetableForWeek
                             var breakTime = seances[j + 1].SeanceStartTime
                                 .Subtract(seances[j].SeanceStartTime.AddMinutes((int)Math.Ceiling((double)(seances[j].Film.Length) / 5) * 5 + 20 )).TotalMinutes;
 
+                            Console.WriteLine((int)Math.Ceiling((double)(seances[j].Film.Length) / 5) * 5 + 20);
+
                             if (breakTime > 0)
                             {
                                 hallVm.Seances.Insert(j + 1 + insertingIndexAdding, new SeanceVM()
