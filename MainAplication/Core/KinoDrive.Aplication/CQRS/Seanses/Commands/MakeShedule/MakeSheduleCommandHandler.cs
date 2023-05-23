@@ -86,9 +86,9 @@ namespace KinoDrive.Aplication.CQRS.Seanses.Commands.CreateNewShedule
                 }
             }
 
-            foreach (var seance in request.Basket)
+            foreach (var seanceId in request.Basket)
             {
-                var seanceEntity = await _context.Seances.FirstOrDefaultAsync(x => x.Id == seance.Id);
+                var seanceEntity = await _context.Seances.FirstOrDefaultAsync(x => x.Id == seanceId);
 
                 if (seanceEntity is not null)
                 {

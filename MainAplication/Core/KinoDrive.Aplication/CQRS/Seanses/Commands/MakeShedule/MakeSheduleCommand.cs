@@ -39,6 +39,6 @@ namespace KinoDrive.Aplication.CQRS.Seanses.Commands.CreateNewShedule
     public class MakeSheduleCommand : IRequest
     {
         public DayShedule Shedule { get; set; }
-        public List<SeanceDTO>? Basket { get; set; }
+        public List<int>? Basket { get; set; }
     }
 }
