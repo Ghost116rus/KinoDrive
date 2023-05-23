@@ -1,5 +1,8 @@
-﻿using KinoDrive.Aplication.CQRS.Seanses.Queries.GetSeanceDetailInfo;
+﻿using KinoDrive.Aplication.CQRS.Films.Commands.CreateFilm;
+using KinoDrive.Aplication.CQRS.Seanses.Commands.CreateNewShedule;
+using KinoDrive.Aplication.CQRS.Seanses.Queries.GetSeanceDetailInfo;
 using KinoDrive.Aplication.CQRS.Seanses.Queries.GetTimetableForWeek;
+using KinoDrive.Aplication.CQRS.Seanses.Queries.GetTimeTableHard;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -29,5 +32,23 @@ namespace KinoDriveWebAPI.Controllers
 
             return Ok(vm);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> MakeShedule([FromBody] MakeSheduleCommand command)
+        {
+            await Mediator.Send(command);
+
+            return Created("200", 200);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<TableVM>> GetHardTable(int branchOffcieId)
+        {
+            var query = new GetTimeTableHardQuery { BranchOfficeId = branchOffcieId };
+            var vm = await Mediator.Send(query);
+
+            return Ok(vm);
+        }
+
     }
 }
